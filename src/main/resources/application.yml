@@ -6,7 +6,8 @@ server:
 
 eureka:
   instance:
-    instance-id: user-command-service
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: localhost
   client:
     register-with-eureka: true
     fetch-registry: true
