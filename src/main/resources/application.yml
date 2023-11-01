@@ -2,11 +2,13 @@ spring:
   application:
     name: user-command-service
 server:
-  port: 0
+  port: 8083
+# port: 0
 
 eureka:
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
     hostname: localhost
   client:
     register-with-eureka: true
