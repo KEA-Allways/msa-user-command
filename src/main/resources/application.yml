@@ -1,6 +1,29 @@
 spring:
   application:
     name: user-command-service
+  datasource:
+    url: jdbc:mysql://13.124.80.188:3306/test?allowPublicKeyRetrieval=true&useSSL=false
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 1234
+  jpa:
+    database: mysql
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      properties:
+        hibernate:
+          format_sql: true
+#    generate-ddl: true
+#      ddl-auto: none
+ #      ddl-auto: create-drop
+
+logging:
+  level:
+    org.hibernate.SQL: debug    # Logger
+    org.hibernate.type: trace   # Show Query Parameter
+
+
 server:
   port: 8083
 # port: 0
