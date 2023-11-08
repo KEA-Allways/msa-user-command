@@ -18,10 +18,10 @@ import lombok.Getter;
 public abstract class EntityDate {
 	@CreatedDate
 	@Column(nullable = false, updatable = false)
-	private LocalDateTime createdAt;
+	private LocalDateTime RegDate;
 
 	@LastModifiedDate
 	@Column(nullable = false, updatable = false)
-	private LocalDateTime modifiedAt;
+	private LocalDateTime ModDate;
 
 }
