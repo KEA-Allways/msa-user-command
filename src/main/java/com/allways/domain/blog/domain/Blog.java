@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.allways.domain.user.domain.User;
+import com.allways.domain.user.entity.User;
 
 import lombok.AccessLevel;
 import lombok.Getter;
