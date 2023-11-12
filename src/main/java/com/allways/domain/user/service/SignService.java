@@ -3,6 +3,7 @@ package com.allways.domain.user.service;
 import com.allways.domain.user.config.TokenHelper;
 import com.allways.domain.user.dto.RefreshTokenResponse;
 import com.allways.domain.user.dto.SignInRequest;
+import com.allways.domain.user.dto.SignInResponse;
 import com.allways.domain.user.dto.SignUpRequest;
 import com.allways.domain.user.entity.User;
 import com.allways.domain.user.exception.AuthenticationEntryPointException;
@@ -29,6 +30,21 @@ public class SignService {
         userRepository.save(SignUpRequest.
                 toEntity(req,
                         passwordEncoder));
+    }
+
+    @Transactional(readOnly = true)
+    public SignInResponse signIn(SignInRequest req) {
+        //member 없으면 LoginFailureException
+        User user = userRepository.findByEmail(req.getEmail()).orElseThrow(LoginFailureException::new);
+        //비밀번호 검사
+        validatePassword(req, user);
+
+        //id를 subject 저장
+        String subject = createSubject(user);
+        //id를 통해서 토큰 생성이고
+        String accessToken = accessTokenHelper.createToken(subject);
+        String refreshToken = refreshTokenHelper.createToken(subject);
+        return new SignInResponse(accessToken, refreshToken);
     }
     private void validatePassword(SignInRequest req, User user) {
         if(!passwordEncoder.matches(req.getPassword(), user.getPassword())) {
