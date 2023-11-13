@@ -10,10 +10,12 @@ spring:
     database: mysql
     open-in-view: false
     show-sql: true
+
     hibernate:
       properties:
         hibernate:
-          format_sql: true
+          format_sql: validate
+      ddl-auto: update
   profiles:
     active: local
     include: secret

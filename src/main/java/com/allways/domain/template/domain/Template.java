@@ -1,6 +1,6 @@
 package com.allways.domain.template.domain;
 
-import com.allways.common.EntityDate;
+//import com.allways.common.EntityDate;
 import com.allways.domain.template.dto.TemplateUpdateRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Template extends EntityDate {
+public class Template   {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long templateSeq;
