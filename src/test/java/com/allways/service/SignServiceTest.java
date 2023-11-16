@@ -6,8 +6,8 @@ import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignInResponse;
 import com.allways.domain.user.exception.AuthenticationEntryPointException;
 import com.allways.domain.user.exception.LoginFailureException;
-import com.allways.domain.user.exception.MemberEmailAlreadyExistsException;
-import com.allways.domain.user.exception.MemberNicknameAlreadyExistsException;
+import com.allways.domain.user.exception.UserEmailAlreadyExistsException;
+import com.allways.domain.user.exception.UserNicknameAlreadyExistsException;
 import com.allways.domain.user.repository.UserRepository;
 import com.allways.domain.user.service.SignService;
 import com.allways.domain.user.dto.SignUpRequest;
@@ -70,7 +70,7 @@ public class SignServiceTest {
 
         // when, then
         assertThatThrownBy(() -> signService.signUp(createSignUpRequest()))
-                .isInstanceOf(MemberEmailAlreadyExistsException.class);
+                .isInstanceOf(UserEmailAlreadyExistsException.class);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class SignServiceTest {
 
         // when, then
         assertThatThrownBy(() -> signService.signUp(createSignUpRequest()))
-                .isInstanceOf(MemberNicknameAlreadyExistsException.class);
+                .isInstanceOf(UserNicknameAlreadyExistsException.class);
     }
 
 
