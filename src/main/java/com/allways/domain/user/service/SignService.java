@@ -28,9 +28,7 @@ public class SignService {
     //생성일 삭제일 추가
     public void signUp(SignUpRequest req) {
         validateSignUpInfo(req);
-        userRepository.save(SignUpRequest.
-                toEntity(req,
-                        passwordEncoder));
+        userRepository.save(SignUpRequest.toEntity(req, passwordEncoder));
     }
 
     @Transactional(readOnly = true)
