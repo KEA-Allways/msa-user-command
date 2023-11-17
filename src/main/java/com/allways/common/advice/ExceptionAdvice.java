@@ -50,20 +50,20 @@ public class ExceptionAdvice {
     }
 
 
-    @ExceptionHandler(MemberEmailAlreadyExistsException.class)
+    @ExceptionHandler(UserEmailAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public Response memberEmailAlreadyExistsException(MemberEmailAlreadyExistsException e) { // 4
+    public Response memberEmailAlreadyExistsException(UserEmailAlreadyExistsException e) { // 4
         return Response.failure(-1005, e.getMessage() + "은 중복된 이메일 입니다.");
     }
 
 
-    @ExceptionHandler (MemberNicknameAlreadyExistsException.class)
+    @ExceptionHandler (UserNicknameAlreadyExistsException.class)
     @ResponseStatus (HttpStatus.CONFLICT)//401
-    public Response memberNicknameAlreadyExistsException(MemberNicknameAlreadyExistsException e){
+    public Response memberNicknameAlreadyExistsException(UserNicknameAlreadyExistsException e){
         return Response.failure(-1006,e.getMessage()+"은 중복된 닉네임 입니다.");
     }
 
-    @ExceptionHandler (MemberNotFoundException.class)
+    @ExceptionHandler (UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)//404
     public Response memberNotFoundException() {
         return Response.failure(-1007,"요청한 회원을 찾을 수 없습니다.");
