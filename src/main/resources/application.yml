@@ -15,7 +15,6 @@ spring:
       properties:
         hibernate:
           format_sql: validate
-      ddl-auto: update
   profiles:
     active: local
     include: secret
