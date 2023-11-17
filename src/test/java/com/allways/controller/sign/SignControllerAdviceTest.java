@@ -1,6 +1,6 @@
 package com.allways.controller.sign;
 
-import com.allways.advice.ExceptionAdvice;
+import com.allways.common.advice.ExceptionAdvice;
 import com.allways.domain.user.controller.SignController;
 import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignUpRequest;

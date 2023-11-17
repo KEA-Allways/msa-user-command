@@ -1,4 +1,4 @@
-package com.allways.advice;
+package com.allways.common.advice;
 
 import com.allways.common.response.Response;
 import com.allways.domain.user.exception.*;

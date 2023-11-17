@@ -12,9 +12,12 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
+
 public class User extends EntityDate {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +37,7 @@ public class User extends EntityDate {
 	//이미지 api 호출?
 	@Column
 	private String profileImgSeq;
+
 
 	public User(String userId,String password,String nickname,String email,String profileImgSeq){
 		this.userId=userId;
