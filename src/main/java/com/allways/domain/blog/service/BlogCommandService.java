@@ -22,26 +22,19 @@ import java.util.Optional;
 @Transactional
 public class BlogCommandService {
     private final BlogRepository blogRepository;
-    private final UserFeignClient userFeignClient;
 
     // 토큰에서 얻은 userSeq
-    public BlogCreateResponse create(BlogCreateRequest req, Long userSeq) {
-
-
-//        UserFeignResponse userFeignResponse = userFeignClient.queryUser(userSeq);
+    public BlogCreateResponse createBlog(BlogCreateRequest req, Long userSeq) {
         Blog blog = blogRepository.save(req.toEntity(req, userSeq));
 
         return new BlogCreateResponse(blog.getBlogSeq());
     }
 
-    public void update(Long blogSeq, BlogUpdateRequest req) {
-        Blog blog =  blogRepository.findById(blogSeq).orElseThrow(BlogNotFoundException::new);
-        blog.update(req);
+    public void updateBlog(Long blogSeq, BlogUpdateRequest req) {
+        blogRepository.updateById(blogSeq, req.getBlogName(), req.getBlogDescription());
     }
 
-    public void delete(Long blogSeq) {
-        Blog blog = blogRepository.findById(blogSeq)
-                .orElseThrow(BlogNotFoundException::new);
-        blogRepository.delete(blog);
+    public void deleteBlog(Long blogSeq) {
+        blogRepository.deleteById(blogSeq);
     }
 }
