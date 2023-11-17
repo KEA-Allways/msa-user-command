@@ -8,8 +8,8 @@ import com.allways.domain.user.dto.SignUpRequest;
 import com.allways.domain.user.entity.User;
 import com.allways.domain.user.exception.AuthenticationEntryPointException;
 import com.allways.domain.user.exception.LoginFailureException;
-import com.allways.domain.user.exception.MemberEmailAlreadyExistsException;
-import com.allways.domain.user.exception.MemberNicknameAlreadyExistsException;
+import com.allways.domain.user.exception.UserEmailAlreadyExistsException;
+import com.allways.domain.user.exception.UserNicknameAlreadyExistsException;
 import com.allways.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -30,9 +30,7 @@ public class SignService {
     //생성일 삭제일 추가
     public void signUp(SignUpRequest req) {
         validateSignUpInfo(req);
-        userRepository.save(SignUpRequest.
-                toEntity(req,
-                        passwordEncoder));
+        userRepository.save(SignUpRequest.toEntity(req, passwordEncoder));
     }
 
     @Transactional(readOnly = true)
@@ -63,14 +61,14 @@ public class SignService {
 
     private void validateSignUpInfo(SignUpRequest req) {
         if(userRepository.existsByEmail(req.getEmail()))
-            throw new MemberEmailAlreadyExistsException(req.getEmail());
+            throw new UserEmailAlreadyExistsException(req.getEmail());
         if(userRepository.existsByNickname(req.getNickname()))
-            throw new MemberNicknameAlreadyExistsException(req.getNickname());
+            throw new UserNicknameAlreadyExistsException(req.getNickname());
     }
 
     public RefreshTokenResponse refreshToken(String rToken){
         validateRefreshToken(rToken);
-        String subject =refreshTokenHelper.extractSubject(rToken);
+        String subject = refreshTokenHelper.extractSubject(rToken);
         String accessToken = accessTokenHelper.createToken(subject);
         return new RefreshTokenResponse(accessToken);
 

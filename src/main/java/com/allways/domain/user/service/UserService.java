@@ -2,7 +2,7 @@ package com.allways.domain.user.service;
 
 import com.allways.domain.user.dto.UserDto;
 import com.allways.domain.user.entity.User;
-import com.allways.domain.user.exception.MemberNotFoundException;
+import com.allways.domain.user.exception.UserNotFoundException;
 import com.allways.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class UserService {
 
     @Transactional
     public void delete (Long id ){
-        User user =userRepository.findById(id).orElseThrow(MemberNotFoundException::new);
+        User user =userRepository.findById(id).orElseThrow(UserNotFoundException::new);
         userRepository.delete(user);
     }
 }

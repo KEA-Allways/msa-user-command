@@ -6,8 +6,8 @@ import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignUpRequest;
 import com.allways.domain.user.exception.AuthenticationEntryPointException;
 import com.allways.domain.user.exception.LoginFailureException;
-import com.allways.domain.user.exception.MemberEmailAlreadyExistsException;
-import com.allways.domain.user.exception.MemberNicknameAlreadyExistsException;
+import com.allways.domain.user.exception.UserEmailAlreadyExistsException;
+import com.allways.domain.user.exception.UserNicknameAlreadyExistsException;
 import com.allways.domain.user.service.SignService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -71,7 +71,7 @@ public class SignControllerAdviceTest {
     void signUpMemberEmailAlreadyExistsExceptionTest() throws Exception {
         // given
         SignUpRequest req = createSignUpRequest("userId","123456a!","nickname" , "email@email.com", "test.jpg");
-        doThrow(MemberEmailAlreadyExistsException.class).when(signService).signUp(any());
+        doThrow(UserEmailAlreadyExistsException.class).when(signService).signUp(any());
 
         // when, then
         mockMvc.perform(
@@ -85,7 +85,7 @@ public class SignControllerAdviceTest {
     void signUpMemberNicknameAlreadyExistsExceptionTest() throws Exception{
 
         SignUpRequest req = createSignUpRequest("userId","123456a!","nickname" , "email@email.com", "test.jpg");
-        doThrow(MemberNicknameAlreadyExistsException.class).when(signService).signUp(any());
+        doThrow(UserNicknameAlreadyExistsException.class).when(signService).signUp(any());
 
         mockMvc.perform(
                 post("/api/sign-up")
