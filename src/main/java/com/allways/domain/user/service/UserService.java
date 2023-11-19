@@ -18,7 +18,7 @@ public class UserService {
 
     @Transactional
     public void updateUser(UserUpdateRequest req, Long userSeq) {
-        userRepository.updateById(userSeq, req.getPassword(),
+        userRepository.updateByUserSeq(userSeq, req.getPassword(),
                 req.getNickname(), req.getEmail(),
                 req.getProfileImgSeq());
     }

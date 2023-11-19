@@ -38,7 +38,6 @@ public class User extends EntityDate {
 	@Column
 	private String profileImgSeq;
 
-
 	public User(String userId,String password,String nickname,String email,String profileImgSeq){
 		this.userId=userId;
 		this.password=password;
@@ -46,6 +45,4 @@ public class User extends EntityDate {
 		this.email=email;
 		this.profileImgSeq=profileImgSeq;
 	}
-
-
 }
