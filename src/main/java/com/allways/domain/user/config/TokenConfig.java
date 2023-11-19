@@ -14,15 +14,15 @@ public class TokenConfig {
 
     @Bean
     public TokenHelper accessTokenHelper(
-            @Value ("${jwt.key.access}")String key,
-            @Value ("${jwt.max-age.access}")long maxAgeSeconds){
-        return new TokenHelper(jwtHandler,key,maxAgeSeconds);
+            @Value ("${jwt.key.access}") String key,
+            @Value ("${jwt.max-age.access}") long maxAgeSeconds){
+        return new TokenHelper(jwtHandler, key, maxAgeSeconds);
     }
 
     @Bean
     public TokenHelper refreshTokenHelper(
-            @Value ("${jwt.key.refresh}")String key,
+            @Value ("${jwt.key.refresh}") String key,
             @Value ("${jwt.max-age.refresh}")long maxAgeSeconds){
-        return new TokenHelper(jwtHandler,key,maxAgeSeconds);
+        return new TokenHelper(jwtHandler, key, maxAgeSeconds);
     }
 }

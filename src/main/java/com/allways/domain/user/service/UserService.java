@@ -1,6 +1,7 @@
 package com.allways.domain.user.service;
 
 import com.allways.domain.user.dto.UserDto;
+import com.allways.domain.user.dto.UserUpdateRequest;
 import com.allways.domain.user.entity.User;
 import com.allways.domain.user.exception.UserNotFoundException;
 import com.allways.domain.user.repository.UserRepository;
@@ -15,13 +16,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserDto read(Long userSeq){
-        return UserDto.toDto(userRepository.findById(userSeq));
+    @Transactional
+    public void updateUser(UserUpdateRequest req, Long userSeq) {
+        userRepository.updateById(userSeq, req.getPassword(),
+                req.getNickname(), req.getEmail(),
+                req.getProfileImgSeq());
     }
 
     @Transactional
-    public void delete (Long id ){
-        User user =userRepository.findById(id).orElseThrow(UserNotFoundException::new);
-        userRepository.delete(user);
+    public void deleteUser(Long userSeq) {
+        userRepository.deleteById(userSeq);
     }
 }

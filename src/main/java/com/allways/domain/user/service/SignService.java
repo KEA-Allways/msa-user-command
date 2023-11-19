@@ -55,7 +55,7 @@ public class SignService {
     }
 
     private String createSubject(User user) {
-        return String.valueOf(user.getUserId());
+        return String.valueOf(user.getUserSeq());
     }
 
 
@@ -71,7 +71,6 @@ public class SignService {
         String subject = refreshTokenHelper.extractSubject(rToken);
         String accessToken = accessTokenHelper.createToken(subject);
         return new RefreshTokenResponse(accessToken);
-
     }
 
     private void validateRefreshToken(String rToken) {
