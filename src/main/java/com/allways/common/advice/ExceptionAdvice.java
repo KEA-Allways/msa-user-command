@@ -1,6 +1,7 @@
 package com.allways.common.advice;
 
 import com.allways.common.response.Response;
+import com.allways.domain.blog.exception.BlogNotFoundException;
 import com.allways.domain.user.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -119,4 +120,10 @@ public class ExceptionAdvice {
 //    public Response commentNotFoundException() {
 //        return Response.failure(-1015, "존재하지 않는 댓글입니다.");
 //    }
+
+    @ExceptionHandler(BlogNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Response blogNotFoundException(){
+        return Response.failure(-2000,"요청한 블로그를 찾을 수 없습니다.");
+    }
 }

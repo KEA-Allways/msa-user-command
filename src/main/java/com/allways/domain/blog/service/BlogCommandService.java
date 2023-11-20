@@ -23,7 +23,7 @@ public class BlogCommandService {
     }
 
     public void updateBlog(Long blogSeq, BlogUpdateRequest req) {
-        blogRepository.updateById(blogSeq, req.getBlogName(), req.getBlogDescription());
+        blogRepository.updateByBlogSeq(blogSeq, req.getBlogName(), req.getBlogDescription());
     }
 
     public void deleteBlog(Long blogSeq) {

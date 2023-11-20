@@ -18,9 +18,9 @@ public class BlogCommandController {
 
     // Blog Create
     // 생성 후 생성된 BlogSeq를 return 한다.
-    @PostMapping("/api/blogs/new-blog/{userSeq}")
+    @PostMapping("/api/blogs")
     @ResponseStatus(HttpStatus.CREATED)
-    public Response createBlog(@PathVariable Long userSeq, @RequestBody BlogCreateRequest req) {
+    public Response createBlog(@RequestHeader(value = "UserSeq") Long userSeq, @RequestBody BlogCreateRequest req) {
         return Response.success(blogCommandService.createBlog(req, userSeq));
     }
 
