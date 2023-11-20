@@ -14,7 +14,7 @@ spring:
     hibernate:
       properties:
         hibernate:
-          format_sql: validate
+          format_sql: true
   profiles:
     active: local
     include: secret
