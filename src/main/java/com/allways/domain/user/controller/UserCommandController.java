@@ -11,15 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class UserController {
+public class UserCommandController {
     private final UserService userService;
-
-    @DeleteMapping("/api/members/{userSeq}")
-    @ResponseStatus(HttpStatus.OK)
-    public Response deleteUser(@PathVariable Long userSeq){
-        userService.deleteUser(userSeq);
-        return Response.success();
-    }
 
     // updateUser를 일단 틀만 추가해 봤습니다.
     // userUpdateRequest의 필요 내용으로
@@ -31,6 +24,13 @@ public class UserController {
     public Response updateUser(@RequestBody UserUpdateRequest req,
                                @PathVariable Long userSeq) {
         userService.updateUser(req, userSeq);
+        return Response.success();
+    }
+
+    @DeleteMapping("/api/members/{userSeq}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response deleteUser(@PathVariable Long userSeq){
+        userService.deleteUser(userSeq);
         return Response.success();
     }
 }
