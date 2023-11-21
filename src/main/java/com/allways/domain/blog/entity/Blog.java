@@ -31,9 +31,4 @@ public class Blog {
         this.blogDescription = blogDescription;
         this.userSeq = userSeq;
     }
-
-    public void update(BlogUpdateRequest req) {
-        this.blogName = req.getBlogName();
-        this.blogDescription = req.getBlogDescription();
-    }
 }

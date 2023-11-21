@@ -1,6 +1,7 @@
 package com.allways.domain.user.controller;
 
 import com.allways.common.response.Response;
+import com.allways.domain.user.dto.UserUpdateRequest;
 import com.allways.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,19 +11,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class UserController {
+public class UserCommandController {
     private final UserService userService;
 
-    @GetMapping("/api/users/{id}")
+    @DeleteMapping("/api/user")
     @ResponseStatus(HttpStatus.OK)
-    public Response read(@PathVariable Long id ){
-        return Response.success(userService.read(id));
+    public Response deleteUser(@RequestHeader(value = "userSeq") Long userSeq){
+        userService.deleteUser(userSeq);
+        return Response.success();
     }
 
-    @DeleteMapping("/api/members/{id}")
+    @PutMapping("/api/user")
     @ResponseStatus(HttpStatus.OK)
-    public Response delete(@PathVariable Long id ){
-        userService.delete(id);
+    public Response updateUser(@RequestHeader(value = "userSeq") Long userSeq, @RequestBody UserUpdateRequest req) {
+        userService.updateUser(req, userSeq);
         return Response.success();
     }
 }

@@ -14,8 +14,8 @@ spring:
     hibernate:
       properties:
         hibernate:
-          format_sql: true
-
+          format_sql: validate
+      ddl-auto: update
 
   profiles:
     active: local
