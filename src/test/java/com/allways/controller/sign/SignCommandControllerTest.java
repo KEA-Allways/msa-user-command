@@ -1,6 +1,6 @@
 package com.allways.controller.sign;
 
-import com.allways.domain.user.controller.SignController;
+import com.allways.domain.user.controller.SignCommandController;
 import com.allways.domain.user.dto.SignInResponse;
 import com.allways.domain.user.dto.SignUpRequest;
 import com.allways.domain.user.dto.SignInRequest;
@@ -28,16 +28,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
-public class SignControllerTest {
+public class SignCommandControllerTest {
     @InjectMocks
-    SignController signController;
+	SignCommandController signCommandController;
     @Mock
     SignService signService;
         MockMvc mockMvc;
     ObjectMapper objectMapper = new ObjectMapper(); // 1
     @BeforeEach
     void beforeEach(){
-        mockMvc = MockMvcBuilders.standaloneSetup(signController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(signCommandController).build();
 
     }
     @Test
@@ -73,7 +73,7 @@ public class SignControllerTest {
 
     @Test
     void refreshTokenTest() throws Exception {
-        given(signService.refreshToken("refreshToken")).willReturn(createRefreshTokenResponse("accessToken"));
+        given(signService.createNewAccessToken("refreshToken")).willReturn(createRefreshTokenResponse("accessToken"));
 
         mockMvc.perform(
                 post("/api/refresh-token")
