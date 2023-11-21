@@ -1,7 +1,7 @@
 package com.allways.service;
 
 import com.allways.domain.user.config.TokenHelper;
-import com.allways.domain.user.dto.RefreshTokenResponse;
+import com.allways.domain.user.dto.AccessTokenResponse;
 import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignInResponse;
 import com.allways.domain.user.exception.AuthenticationEntryPointException;
@@ -131,7 +131,7 @@ public class SignServiceTest {
         given(refreshTokenHelper.extractSubject(refreshToken)).willReturn(subject);
         given(accessTokenHelper.createToken(subject)).willReturn(accessToken);
 
-        RefreshTokenResponse res  = signService.refreshToken(refreshToken);
+        AccessTokenResponse res  = signService.createNewAccessToken(refreshToken);
 
         assertThat(res.getAccessToken()).isEqualTo(accessToken);
     }
@@ -141,7 +141,7 @@ public class SignServiceTest {
         String refreshToken = "refreshToken";
         given(refreshTokenHelper.validate(refreshToken)).willReturn(false);
 
-        assertThatThrownBy(()->signService.refreshToken(refreshToken))
+        assertThatThrownBy(()->signService.createNewAccessToken(refreshToken))
                 .isInstanceOf(AuthenticationEntryPointException.class);
     }
 

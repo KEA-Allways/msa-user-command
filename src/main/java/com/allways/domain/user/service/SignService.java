@@ -1,7 +1,7 @@
 package com.allways.domain.user.service;
 
 import com.allways.domain.user.config.TokenHelper;
-import com.allways.domain.user.dto.RefreshTokenResponse;
+import com.allways.domain.user.dto.AccessTokenResponse;
 import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignInResponse;
 import com.allways.domain.user.dto.SignUpRequest;
@@ -64,15 +64,15 @@ public class SignService {
             throw new UserNicknameAlreadyExistsException(req.getNickname());
     }
 
-    public RefreshTokenResponse refreshToken(String rToken){
-        validateRefreshToken(rToken);
-        String subject = refreshTokenHelper.extractSubject(rToken);
+    public AccessTokenResponse createNewAccessToken(String refreshToken){
+        validateRefreshToken(refreshToken);
+        String subject = refreshTokenHelper.extractSubject(refreshToken);
         String accessToken = accessTokenHelper.createToken(subject);
-        return new RefreshTokenResponse(accessToken);
+        return new AccessTokenResponse(accessToken);
     }
 
-    private void validateRefreshToken(String rToken) {
-        if(!refreshTokenHelper.validate(rToken)){
+    private void validateRefreshToken(String refreshToken) {
+        if(!refreshTokenHelper.validate(refreshToken)){
             throw new AuthenticationEntryPointException();
         }
     }

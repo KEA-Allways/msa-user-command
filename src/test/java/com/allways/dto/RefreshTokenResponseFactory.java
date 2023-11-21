@@ -1,10 +1,10 @@
 package com.allways.dto;
 
 
-import com.allways.domain.user.dto.RefreshTokenResponse;
+import com.allways.domain.user.dto.AccessTokenResponse;
 
 public class RefreshTokenResponseFactory {
-    public static RefreshTokenResponse createRefreshTokenResponse(String accessToken) {
-        return new RefreshTokenResponse(accessToken);
+    public static AccessTokenResponse createRefreshTokenResponse(String accessToken) {
+        return new AccessTokenResponse(accessToken);
     }
 }

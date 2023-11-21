@@ -1,7 +1,7 @@
 package com.allways.controller.sign;
 
 import com.allways.common.advice.ExceptionAdvice;
-import com.allways.domain.user.controller.SignController;
+import com.allways.domain.user.controller.SignCommandController;
 import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignUpRequest;
 import com.allways.domain.user.exception.AuthenticationEntryPointException;
@@ -32,9 +32,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
-public class SignControllerAdviceTest {
+public class SignCommandControllerAdviceTest {
     @InjectMocks
-    SignController signController;
+	SignCommandController signCommandController;
     @Mock
     SignService signService;
     MockMvc mockMvc;
@@ -42,7 +42,7 @@ public class SignControllerAdviceTest {
 
     @BeforeEach
     void beforeEach(){
-        mockMvc = MockMvcBuilders.standaloneSetup(signController).setControllerAdvice(new ExceptionAdvice()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(signCommandController).setControllerAdvice(new ExceptionAdvice()).build();
     }
     @Test
     void signInLoginFailureExceptionTest() throws Exception{
@@ -109,7 +109,7 @@ public class SignControllerAdviceTest {
 
     @Test
     void refreshTokenAuthenticationEntryPointException()throws Exception {
-        given(signService.refreshToken(anyString())).willThrow(AuthenticationEntryPointException.class);
+        given(signService.createNewAccessToken(anyString())).willThrow(AuthenticationEntryPointException.class);
 
         mockMvc.perform(
                 post("/api/refresh-token")
