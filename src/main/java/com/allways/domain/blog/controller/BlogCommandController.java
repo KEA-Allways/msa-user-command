@@ -16,22 +16,20 @@ import org.springframework.web.bind.annotation.*;
 public class BlogCommandController {
     private final BlogCommandService blogCommandService;
 
-    // Blog Create
-    // 생성 후 생성된 BlogSeq를 return 한다.
-    @PostMapping("/api/blogs")
+    @PostMapping("/api/blog")
     @ResponseStatus(HttpStatus.CREATED)
-    public Response createBlog(@RequestHeader(value = "UserSeq") Long userSeq, @RequestBody BlogCreateRequest req) {
+    public Response createBlog(@RequestHeader(value = "userSeq") Long userSeq, @RequestBody BlogCreateRequest req) {
         return Response.success(blogCommandService.createBlog(req, userSeq));
     }
 
-    @PutMapping("/api/blogs/{blogSeq}")
+    @PutMapping("/api/blog/{blogSeq}")
     @ResponseStatus(HttpStatus.OK)
     public Response updateBlog(@PathVariable Long blogSeq, @RequestBody BlogUpdateRequest req) {
         blogCommandService.updateBlog(blogSeq, req);
         return Response.success();
     }
 
-    @DeleteMapping("/api/blogs/{blogSeq}")
+    @DeleteMapping("/api/blog/{blogSeq}")
     @ResponseStatus(HttpStatus.OK)
     public Response deleteBlog(@PathVariable Long blogSeq) {
         blogCommandService.deleteBlog(blogSeq);
