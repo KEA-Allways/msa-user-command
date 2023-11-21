@@ -10,11 +10,15 @@ spring:
     database: mysql
     open-in-view: false
     show-sql: true
+
     hibernate:
       properties:
         hibernate:
           format_sql: true
-#    generate-ddl: true
+  profiles:
+    active: local
+    include: secret
+  #    generate-ddl: true
 #      ddl-auto: none
  #      ddl-auto: create-drop
 
