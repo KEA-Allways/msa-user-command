@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Component
 public class JwtHandler {
-    private String type ="Bearer ";
+    private String type = "Bearer ";
 
     public String createToken(String encodedKey,String subject,long maxAgeSeconds){
         Date now=new Date();
