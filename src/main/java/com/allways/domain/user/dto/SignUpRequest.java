@@ -35,11 +35,11 @@ public class SignUpRequest {
     private String nickname;
 
 
-     @NotBlank(message = "이미지 넣어주세요")
+     @NotBlank(message = "프로필 이미지를 넣어주세요")
      private String profileImgSeq;
 
 
     public static User toEntity(SignUpRequest req,   PasswordEncoder encoder) {
-        return new User(req.userId, encoder.encode(req.password),req.nickname, req.email,req.profileImgSeq  );
+        return new User(req.userId, encoder.encode(req.password), req.nickname, req.email, req.profileImgSeq  );
     }
 }
