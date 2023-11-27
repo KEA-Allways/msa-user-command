@@ -48,7 +48,7 @@ public class SignServiceTest {
     // @BeforeEach에서 직접적으로 인스턴스를 생성하여 의존성을 초기화해주고 있습니다.
     @BeforeEach
     void beforeEach(){
-        signService = new SignService(userRepository,passwordEncoder,accessTokenHelper,refreshTokenHelper);
+        //signService = new SignService(userRepository,passwordEncoder,accessTokenHelper,refreshTokenHelper);
     }
 
     @Test
