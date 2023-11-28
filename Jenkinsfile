@@ -103,10 +103,8 @@ pipeline {
             
                 sh 'ssh -o StrictHostKeyChecking=no ${username}@${ip} "whoami"'
 
-               
-                
                 sh "ssh -o StrictHostKeyChecking=no ${username}@${ip} 'docker pull ${imagename}:${tagname}'"
-                sh "ssh -o StrictHostKeyChecking=no ${username}@${ip} 'docker run -d -p 80:${port} --name ${springname} ${imagename}:${tagname}'"
+                sh "ssh -o StrictHostKeyChecking=no ${username}@${ip} 'docker run -d -p 81:${port} ${port}:${port}--name ${springname} ${imagename}:${tagname}'"
             }
           }
 
