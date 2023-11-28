@@ -7,6 +7,6 @@ COPY src src
 RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 FROM openjdk:11-slim
-COPY --from=builder build/libs/*.jar msa-user-query.jar
+COPY --from=builder build/libs/*.jar msa-user-command.jar
 VOLUME /tmp
 ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod","msa-user-command.jar"]
