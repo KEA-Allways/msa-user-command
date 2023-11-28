@@ -1,4 +1,4 @@
-package com.allways.dto;
+package com.allways.temp;
 
 import com.allways.domain.user.dto.SignInRequest;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ public class SignInRequestValidationTest {
     @Test
     void validateTest(){
         SignInRequest req =createRequest();
-        Set<ConstraintViolation<SignInRequest>>validate =validator.validate(req);
+        Set<ConstraintViolation<SignInRequest>>validate = validator.validate(req);
 
         assertThat(validate).isEmpty();
     }
@@ -25,31 +25,30 @@ public class SignInRequestValidationTest {
     void invalidateByNotFormattedEmailTest(){
         String invalidValue = "email";
         SignInRequest req = createRequestWithEmail(invalidValue);
-        Set<ConstraintViolation<SignInRequest>> validate =validator.validate(req);
+        Set<ConstraintViolation<SignInRequest>> validate = validator.validate(req);
         //error 가 있다는 말씀
         assertThat(validate).isNotEmpty();
         assertThat(validate.stream().map(v -> v.getInvalidValue()).collect(toSet())).contains(invalidValue);
     }
     @Test
     void invalidateByEmptyEmailTest(){
-        String invalidValue =null;
+        String invalidValue = null;
         SignInRequest req = createRequestWithEmail(invalidValue);
 
-        Set<ConstraintViolation<SignInRequest>> validate=validator.validate(req);
+        Set<ConstraintViolation<SignInRequest>> validate = validator.validate(req);
 
         assertThat(validate).isNotEmpty();
-        assertThat(validate.stream().map(v->v.getInvalidValue()).collect(toSet())).contains(invalidValue);
+        assertThat(validate.stream().map(v -> v.getInvalidValue()).collect(toSet())).contains(invalidValue);
     }
 
     @Test
-    void  invalidateByBlankEmailTest() {
-        String invalidValue =" ";
+    void invalidateByBlankEmailTest() {
+        String invalidValue = " ";
         SignInRequest req = createRequestWithEmail(invalidValue);
-        Set<ConstraintViolation<SignInRequest>>  validate =validator.validate(req);
+        Set<ConstraintViolation<SignInRequest>> validate = validator.validate(req);
 
         assertThat(validate).isNotEmpty();
-        assertThat(validate.stream().map(v->v.getInvalidValue()).collect(toSet())).contains(invalidValue);
-
+        assertThat(validate.stream().map(v -> v.getInvalidValue()).collect(toSet())).contains(invalidValue);
     }
 
     private SignInRequest createRequest() { // 6
@@ -63,5 +62,4 @@ public class SignInRequestValidationTest {
     private SignInRequest createRequestWithPassword(String password) { // 8
         return new SignInRequest("email@email.com", password);
     }
-
 }

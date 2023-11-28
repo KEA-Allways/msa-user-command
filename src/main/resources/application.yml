@@ -1,40 +1,38 @@
 spring:
   application:
     name: user-command-service
+
+  # 프로덕션 설정
+  profiles:
+    active: local
+    include: secret
   datasource:
     url: jdbc:mysql://3.80.230.96/command?allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
-  jpa:
-    database: mysql
-    open-in-view: false
-    show-sql: true
+    jpa:
+      database: mysql
+      open-in-view: false
+      show-sql: true
+      hibernate:
+        properties:
+          hibernate:
+            format_sql: true
 
-    hibernate:
-      properties:
-        hibernate:
-          format_sql: true
-  profiles:
-    active: local
-    include: secret
-  #    generate-ddl: true
-#      ddl-auto: none
- #      ddl-auto: create-drop
+  # 로깅 설정
+  logging:
+    level:
+      org.hibernate.SQL: debug
+      org.hibernate.type: trace
 
-logging:
-  level:
-    org.hibernate.SQL: debug    # Logger
-    org.hibernate.type: trace   # Show Query Parameter
+  # 서버 설정
+  server:
+    port: 8083
 
-
-server:
-  port: 8083
-# port: 0
-
+# Eureka 클라이언트 설정
 eureka:
   instance:
-#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
     hostname: localhost
   client:
@@ -42,3 +40,22 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+---
+
+# 테스트 설정
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://13.124.80.188:3307/junit?allowPublicKeyRetrieval=true&useSSL=false
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 1234
+    jpa:
+      database: mysql
+      open-in-view: false
+      show-sql: true
+      hibernate:
+        properties:
+          hibernate:
+            format_sql: true

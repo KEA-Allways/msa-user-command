@@ -1,4 +1,4 @@
-package com.allways.factory;
+package com.allways.common.factory.user;
 
 
 import com.allways.domain.user.dto.SignInResponse;

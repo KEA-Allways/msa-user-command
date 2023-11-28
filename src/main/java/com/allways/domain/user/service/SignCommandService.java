@@ -12,14 +12,16 @@ import com.allways.domain.user.exception.LoginFailureException;
 import com.allways.domain.user.exception.UserEmailAlreadyExistsException;
 import com.allways.domain.user.exception.UserNicknameAlreadyExistsException;
 import com.allways.domain.user.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class SignService {
+public class SignCommandService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenHelper accessTokenHelper;
@@ -61,7 +63,6 @@ public class SignService {
     private String createSubject(User user) {
         return String.valueOf(user.getUserSeq());
     }
-
 
     private void validateSignUpInfo(SignUpRequest req) {
         if(userRepository.existsByEmail(req.getEmail()))
