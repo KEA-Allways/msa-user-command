@@ -1,5 +1,6 @@
 package com.allways.domain.user.service;
 
+import com.allways.common.feign.fastApi.FastApiClientService;
 import com.allways.domain.user.config.TokenHelper;
 import com.allways.domain.user.dto.AccessTokenResponse;
 import com.allways.domain.user.dto.SignInRequest;
@@ -23,12 +24,17 @@ public class SignCommandService {
     private final PasswordEncoder passwordEncoder;
     private final TokenHelper accessTokenHelper;
     private final TokenHelper refreshTokenHelper;
+    private final FastApiClientService fastApiClientService;
 
     @Transactional
     //생성일 삭제일 추가
     public void signUp(SignUpRequest req) {
         validateSignUpInfo(req);
-        userRepository.save(SignUpRequest.toEntity(req, passwordEncoder));
+
+        User user = userRepository.save(SignUpRequest.toEntity(req, passwordEncoder));
+
+        //프로필 이미지 mongoDb에 저장
+        fastApiClientService.sendDataToFastApiUserProfileImg(user.getUserSeq(), req.getProfileImgSeq());
     }
 
     @Transactional(readOnly = true)
