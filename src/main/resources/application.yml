@@ -22,8 +22,8 @@ spring:
       org.hibernate.type: trace
 
   # 서버 설정
-  server:
-    port: 8083
+server:
+  port: 8083
 
 # Eureka 클라이언트 설정
 eureka:
