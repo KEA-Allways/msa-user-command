@@ -3,7 +3,9 @@ package com.allways.domain.blog.service;
 import com.allways.domain.blog.dto.BlogCreateRequest;
 import com.allways.domain.blog.dto.BlogUpdateRequest;
 import com.allways.domain.blog.repository.BlogRepository;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,7 +22,7 @@ public class BlogCommandService {
     }
 
     public void updateBlog(Long blogSeq, BlogUpdateRequest req) {
-        blogRepository.updateByBlogSeq(blogSeq, req.getNewBlogName(), req.getNewBlogDescription());
+        blogRepository.updateByBlogSeq(blogSeq, req.getBlogName(), req.getBlogDescription());
     }
 
     public void deleteBlog(Long blogSeq) {

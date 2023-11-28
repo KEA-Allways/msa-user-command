@@ -2,7 +2,6 @@ package com.allways.domain.user.service;
 
 import com.allways.common.factory.user.SignInRequestFactory;
 import com.allways.common.factory.user.SignUpRequestFactory;
-
 import com.allways.common.factory.user.UserFactory;
 import com.allways.domain.user.config.TokenHelper;
 import com.allways.domain.user.dto.SignInRequest;
@@ -13,12 +12,16 @@ import com.allways.domain.user.exception.LoginFailureException;
 import com.allways.domain.user.exception.UserEmailAlreadyExistsException;
 import com.allways.domain.user.exception.UserNicknameAlreadyExistsException;
 import com.allways.domain.user.repository.UserRepository;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;

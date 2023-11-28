@@ -5,15 +5,21 @@ import com.allways.domain.blog.dto.BlogUpdateRequest;
 import com.allways.domain.blog.service.BlogCommandService;
 import com.allways.common.factory.blog.BlogCreateRequestFactory;
 import com.allways.common.factory.blog.BlogUpdateRequestFactory;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.Mockito.times;
@@ -40,13 +46,18 @@ class BlogCommandControllerTest {
         BlogCreateRequest createRequest = BlogCreateRequestFactory.createBlogCreateRequest();
 
         // When, Then
-        mockMvc.perform(post("/api/blog")
+        MvcResult result = mockMvc.perform(post("/api/blog")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .header("userSeq", 1L) // userSeq 헤더 추가
+                        .header("userSeq", String.valueOf(1L)) // userSeq 헤더 추가
                         .content(asJsonString(createRequest)))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andReturn();
 
-        verify(blogCommandService, times(1)).createBlog(createRequest, 1L);
+        MockHttpServletRequest request = result.getRequest();
+        String userSeq = request.getHeader("userSeq");
+
+        verify(blogCommandService, times(1))
+                .createBlog(createRequest, Long.parseLong(userSeq));
     }
 
     @Test
