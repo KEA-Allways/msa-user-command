@@ -4,7 +4,6 @@ import com.allways.common.response.Response;
 import com.allways.domain.blog.dto.BlogCreateRequest;
 import com.allways.domain.blog.dto.BlogUpdateRequest;
 import com.allways.domain.blog.service.BlogCommandService;
-import com.allways.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,8 @@ public class BlogCommandController {
     @PostMapping("/api/blog")
     @ResponseStatus(HttpStatus.CREATED)
     public Response createBlog(@RequestHeader(value = "userSeq") Long userSeq, @RequestBody BlogCreateRequest req) {
-        return Response.success(blogCommandService.createBlog(req, userSeq));
+        blogCommandService.createBlog(req, userSeq);
+        return Response.success();
     }
 
     @PutMapping("/api/blog/{blogSeq}")

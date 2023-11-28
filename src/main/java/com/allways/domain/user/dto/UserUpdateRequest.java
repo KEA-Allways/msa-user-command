@@ -19,6 +19,6 @@ public class UserUpdateRequest {
     @NotBlank(message = "새로운 이메일을 입력하세요.")
     private String email;
 
-    @NotBlank(message = "새로운 프로필을 입력해주세요.")
+    @NotBlank(message = "새로운 프로필을 입력하세요.")
     private String profileImgSeq;
 }

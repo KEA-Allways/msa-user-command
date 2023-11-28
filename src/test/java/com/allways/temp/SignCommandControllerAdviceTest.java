@@ -1,4 +1,4 @@
-package com.allways.controller.sign;
+package com.allways.temp;
 
 import com.allways.common.advice.ExceptionAdvice;
 import com.allways.domain.user.controller.SignCommandController;
@@ -8,7 +8,7 @@ import com.allways.domain.user.exception.AuthenticationEntryPointException;
 import com.allways.domain.user.exception.LoginFailureException;
 import com.allways.domain.user.exception.UserEmailAlreadyExistsException;
 import com.allways.domain.user.exception.UserNicknameAlreadyExistsException;
-import com.allways.domain.user.service.SignService;
+import com.allways.domain.user.service.SignCommandService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,8 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static com.allways.factory.SignInRequestFactory.createSignInRequest;
-import static com.allways.factory.SignUpRequestFactory.createSignUpRequest;
+import static com.allways.common.factory.user.SignInRequestFactory.createSignInRequest;
+import static com.allways.common.factory.user.SignUpRequestFactory.createSignUpRequest;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -36,7 +36,7 @@ public class SignCommandControllerAdviceTest {
     @InjectMocks
 	SignCommandController signCommandController;
     @Mock
-    SignService signService;
+    SignCommandService signService;
     MockMvc mockMvc;
     ObjectMapper objectMapper = new ObjectMapper();
 

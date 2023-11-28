@@ -1,5 +1,6 @@
 package com.allways.domain.blog.service;
 
+import com.allways.common.response.Response;
 import com.allways.domain.blog.dto.BlogCreateRequest;
 import com.allways.domain.blog.dto.BlogCreateResponse;
 import com.allways.domain.blog.dto.BlogUpdateRequest;
@@ -17,9 +18,8 @@ public class BlogCommandService {
     private final BlogRepository blogRepository;
 
     // 토큰에서 얻은 userSeq
-    public BlogCreateResponse createBlog(BlogCreateRequest req, Long userSeq) {
+    public void createBlog(BlogCreateRequest req, Long userSeq) {
         Blog blog = blogRepository.save(req.toEntity(req, userSeq));
-        return new BlogCreateResponse(blog.getBlogSeq());
     }
 
     public void updateBlog(Long blogSeq, BlogUpdateRequest req) {

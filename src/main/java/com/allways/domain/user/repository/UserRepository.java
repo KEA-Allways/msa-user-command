@@ -9,13 +9,11 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    Optional<User> findByEmail(String email);//1
+    Optional<User> findByEmail(String email);
 
-    Optional<User> findByNickname(String nickname);//2
+    boolean existsByEmail(String email);
 
-    boolean existsByEmail(String email); // 3
-
-    boolean existsByNickname(String nickname); // 4
+    boolean existsByNickname(String nickname);
 
     @Modifying
     @Query("UPDATE User u SET u.password = :password, u.nickname = :nickname, u.email = :email, u.profileImgSeq = :profileImgSeq WHERE u.userSeq = :userSeq")

@@ -1,4 +1,4 @@
-package com.allways.dto;
+package com.allways.temp;
 
 
 import com.allways.domain.user.dto.AccessTokenResponse;
