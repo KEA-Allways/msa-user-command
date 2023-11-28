@@ -1,10 +1,7 @@
 package com.allways.domain.blog.service;
 
-import com.allways.common.response.Response;
 import com.allways.domain.blog.dto.BlogCreateRequest;
-import com.allways.domain.blog.dto.BlogCreateResponse;
 import com.allways.domain.blog.dto.BlogUpdateRequest;
-import com.allways.domain.blog.entity.Blog;
 import com.allways.domain.blog.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,11 +16,11 @@ public class BlogCommandService {
 
     // 토큰에서 얻은 userSeq
     public void createBlog(BlogCreateRequest req, Long userSeq) {
-        Blog blog = blogRepository.save(req.toEntity(req, userSeq));
+        blogRepository.save(req.toEntity(req, userSeq));
     }
 
     public void updateBlog(Long blogSeq, BlogUpdateRequest req) {
-        blogRepository.updateByBlogSeq(blogSeq, req.getBlogName(), req.getBlogDescription());
+        blogRepository.updateByBlogSeq(blogSeq, req.getNewBlogName(), req.getNewBlogDescription());
     }
 
     public void deleteBlog(Long blogSeq) {

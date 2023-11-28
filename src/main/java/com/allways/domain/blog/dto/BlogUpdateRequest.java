@@ -10,9 +10,9 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BlogUpdateRequest {
-    @NotBlank(message = "블로그의 이름을 입력해주세요.")
-    private String blogName;
+    @NotBlank(message = "블로그의 새로운 이름을 입력해주세요.")
+    private String newBlogName;
 
-    @NotBlank(message = "블로그 소개를 입력해주세요.")
-    private String blogDescription;
+    @NotBlank(message = "블로그 새로운 소개를 입력해주세요.")
+    private String newBlogDescription;
 }
