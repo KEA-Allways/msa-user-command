@@ -1,3 +1,20 @@
+# 테스트 설정
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://13.124.80.188:3307/junit?allowPublicKeyRetrieval=true&useSSL=false
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 1234
+    jpa:
+      database: mysql
+      open-in-view: false
+      show-sql: true
+      hibernate:
+        properties:
+          hibernate:
+            format_sql: true
+
 jwt:
   key:
     #스프링부트 마스터하고싶다

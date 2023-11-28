@@ -27,4 +27,11 @@ public class UserCommandController {
         userCommandService.updateUser(req, userSeq);
         return Response.success();
     }
+
+
+    @PostMapping("/api/user/test/command")
+    @ResponseStatus(HttpStatus.OK)
+    public String test () {
+        return "/api/user/test/command";
+    }
 }
