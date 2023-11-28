@@ -101,6 +101,7 @@ pipeline {
             
             sshagent(['ec2-ssh']) {
             
+
                 sh 'ssh -o StrictHostKeyChecking=no ${username}@${ip} "whoami"'
 
 
