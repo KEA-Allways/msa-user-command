@@ -4,13 +4,17 @@ import com.allways.domain.user.dto.UserUpdateRequest;
 import com.allways.domain.user.entity.User;
 import com.allways.domain.user.service.UserCommandService;
 import com.allways.common.factory.user.UserFactory;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -25,15 +29,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(MockitoExtension.class)
 class UserCommandControllerTest {
     private MockMvc mockMvc;
-
-    @InjectMocks
-    private UserCommandController userCommandController;
-
-    @Mock
-    private UserCommandService userCommandService;
+    @InjectMocks private UserCommandController userCommandController;
+    @Mock private UserCommandService userCommandService;
 
     @BeforeEach
-    void setUp() {
+    void BeforeEach() {
         // MockMvc를 설정하여 컨트롤러를 테스트할 수 있는 환경을 구성합니다.
         mockMvc = MockMvcBuilders.standaloneSetup(userCommandController).build();
     }
@@ -61,7 +61,8 @@ class UserCommandControllerTest {
         User user = UserFactory.createUser();
 
         // UserUpdateRequest 객체를 생성하고, 해당 객체를 JSON 형태로 변환합니다.
-        UserUpdateRequest userUpdateRequest = new UserUpdateRequest(user.getPassword(), user.getNickname(),
+        UserUpdateRequest userUpdateRequest = new UserUpdateRequest(
+                user.getPassword(), user.getNickname(),
                 user.getEmail(), user.getProfileImgSeq());
 
         ObjectMapper objectMapper = new ObjectMapper();

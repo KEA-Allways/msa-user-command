@@ -16,7 +16,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,7 +35,7 @@ public class BlogCommandServiceTest {
         blogCommandService.createBlog(createRequest, userSeq);
 
         // Then
-        verify(blogRepository, times(1)).save(BlogArgumentCaptor.capture());
+        verify(blogRepository).save(BlogArgumentCaptor.capture());
 
         Blog savedBlog = BlogArgumentCaptor.getValue();
 
@@ -54,7 +53,9 @@ public class BlogCommandServiceTest {
         blogCommandService.updateBlog(blogSeq, request);
 
         // Then
-        verify(blogRepository, times(1)).updateByBlogSeq(blogSeq, request.getBlogName(), request.getBlogDescription());
+        verify(blogRepository).updateByBlogSeq(
+                blogSeq, request.getBlogName(),
+                request.getBlogDescription());
     }
 
     @Test
@@ -66,6 +67,6 @@ public class BlogCommandServiceTest {
         blogCommandService.deleteBlog(blogSeq);
 
         // Then
-        verify(blogRepository, times(1)).deleteById(blogSeq);
+        verify(blogRepository).deleteById(blogSeq);
     }
 }

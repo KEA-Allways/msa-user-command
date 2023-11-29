@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -56,8 +55,7 @@ class BlogCommandControllerTest {
         MockHttpServletRequest request = result.getRequest();
         String userSeq = request.getHeader("userSeq");
 
-        verify(blogCommandService, times(1))
-                .createBlog(createRequest, Long.parseLong(userSeq));
+        verify(blogCommandService).createBlog(createRequest, Long.parseLong(userSeq));
     }
 
     @Test
@@ -72,7 +70,7 @@ class BlogCommandControllerTest {
                         .content(asJsonString(updateRequest)))
                 .andExpect(status().isOk());
 
-        verify(blogCommandService, times(1)).updateBlog(blogSeq, updateRequest);
+        verify(blogCommandService).updateBlog(blogSeq, updateRequest);
     }
 
     @Test
@@ -84,7 +82,7 @@ class BlogCommandControllerTest {
         mockMvc.perform(delete("/api/blog/{blogSeq}", blogSeq))
                 .andExpect(status().isOk());
 
-        verify(blogCommandService, times(1)).deleteBlog(blogSeq);
+        verify(blogCommandService).deleteBlog(blogSeq);
     }
 
     // 객체를 JSON 문자열로 변환하는 유틸리티 메서드

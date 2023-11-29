@@ -1,10 +1,12 @@
 package com.allways.domain.blog.dto;
 
+import com.allways.common.factory.blog.BlogUpdateRequestFactory;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,9 +17,7 @@ public class BlogUpdateRequestTest {
     @Test
     void validateBlogUpdateRequest() {
         // Given
-        BlogUpdateRequest blogUpdateRequest = new BlogUpdateRequest();
-        blogUpdateRequest.setBlogName("UpdateBlogName");
-        blogUpdateRequest.setBlogDescription("UpdateBlogDescription");
+        BlogUpdateRequest blogUpdateRequest = BlogUpdateRequestFactory.createBlogUpdateRequest("UpdateBlogName", "UpdateBlogDescription");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();

@@ -31,7 +31,7 @@ class SignCommandControllerTest {
     @Mock private SignCommandService signService;
 
     @BeforeEach
-    void setUp() {
+    void BeforeEach() {
         mockMvc = MockMvcBuilders.standaloneSetup(signCommandController).build();
     }
 
@@ -47,7 +47,7 @@ class SignCommandControllerTest {
                 .andExpect(status().isCreated());
 
         // Then
-        verify(signService, times(1)).signUp(signUpRequest);
+        verify(signService).signUp(signUpRequest);
     }
 
     @Test
@@ -64,7 +64,7 @@ class SignCommandControllerTest {
                         .content(asJsonString(signInRequest)))
                 .andExpect(status().isOk());
 
-        verify(signService, times(1)).signIn(signInRequest);
+        verify(signService).signIn(signInRequest);
     }
 
     // 객체를 JSON 문자열로 변환하는 유틸리티 메서드
