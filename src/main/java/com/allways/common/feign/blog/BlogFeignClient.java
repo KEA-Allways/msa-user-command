@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name="blog-query" ,url="http://localhost:8084/api/blogs/feign" )
+@FeignClient(name="blog-query-service")
 public interface BlogFeignClient {
 
     @GetMapping("{userSeq}")
