@@ -8,6 +8,7 @@ import com.allways.common.factory.user.SignInRequestFactory;
 import com.allways.common.factory.user.SignInResponseFactory;
 import com.allways.common.factory.user.SignUpRequestFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -54,7 +54,8 @@ class SignCommandControllerTest {
     void signInTest() throws Exception {
         // Given
         SignInRequest signInRequest = SignInRequestFactory.createSignInRequest();
-        SignInResponse signInResponse = SignInResponseFactory.createSignInResponse("accessToken", "refreshToken");
+        SignInResponse signInResponse = SignInResponseFactory.createSignInResponse(
+                "accessToken", "refreshToken");
         // 가짜 응답을 생성하기 위한 모의 객체 설정
         given(signService.signIn(signInRequest)).willReturn(signInResponse);
 

@@ -4,7 +4,6 @@ import com.allways.common.factory.blog.BlogFactory;
 import com.allways.domain.blog.entity.Blog;
 
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;

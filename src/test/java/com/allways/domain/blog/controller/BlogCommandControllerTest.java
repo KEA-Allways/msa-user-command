@@ -5,17 +5,14 @@ import com.allways.domain.blog.dto.BlogUpdateRequest;
 import com.allways.domain.blog.service.BlogCommandService;
 import com.allways.common.factory.blog.BlogCreateRequestFactory;
 import com.allways.common.factory.blog.BlogUpdateRequestFactory;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
@@ -35,7 +32,7 @@ class BlogCommandControllerTest {
     @Mock private BlogCommandService blogCommandService;
 
     @BeforeEach
-    void setUp() {
+    void BeforeEach() {
         mockMvc = MockMvcBuilders.standaloneSetup(blogCommandController).build();
     }
 

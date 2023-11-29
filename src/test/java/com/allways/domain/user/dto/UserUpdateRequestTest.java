@@ -35,7 +35,7 @@ public class UserUpdateRequestTest {
     }
 
     @Test
-    void UserUpdateRequestPasswordValidation() {
+    void UserUpdatePasswordValidation() {
         // Given
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "",
@@ -52,7 +52,7 @@ public class UserUpdateRequestTest {
     }
 
     @Test
-    void UserUpdateRequestNicknameValidation() {
+    void UserUpdateNicknameValidation() {
         // Given
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
@@ -69,7 +69,7 @@ public class UserUpdateRequestTest {
     }
 
     @Test
-    void UserUpdateRequestEmailValidation() {
+    void UserUpdateEmailValidation() {
         // Given
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
