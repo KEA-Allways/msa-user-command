@@ -25,6 +25,4 @@ public class UserCommandService {
     public void deleteUser(Long userSeq) {
         userRepository.deleteById(userSeq);
     }
-
-
 }

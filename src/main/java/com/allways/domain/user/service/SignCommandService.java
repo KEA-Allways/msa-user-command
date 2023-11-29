@@ -39,6 +39,12 @@ public class SignCommandService {
         fastApiClientService.sendDataToFastApiUserProfileImg(user.getUserSeq(), req.getProfileImgSeq());
     }
 
+    @Transactional
+    public void SignUpForTest(SignUpRequest req) {
+        validateSignUpInfo(req);
+        userRepository.save(SignUpRequest.toEntity(req, passwordEncoder));
+    }
+
     @Transactional(readOnly = true)
     public SignInResponse signIn(SignInRequest req) {
         //member 없으면 LoginFailureException
