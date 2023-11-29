@@ -31,7 +31,7 @@ class SignCommandControllerTest {
     @Mock private SignCommandService signService;
 
     @BeforeEach
-    void BeforeEach() {
+    void beforeEach() {
         mockMvc = MockMvcBuilders.standaloneSetup(signCommandController).build();
     }
 

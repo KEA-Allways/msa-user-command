@@ -18,7 +18,7 @@ public class BlogCreateRequestTest {
     private final Validator validator = factory.getValidator();
 
     @Test
-    void BlogCreateRequestValidation() {
+    void blogCreateRequestValidation() {
         // Given
         BlogCreateRequest createRequest = BlogCreateRequestFactory.createBlogCreateRequest(
                 "TestBlogName", "TestBlogDescription");
@@ -27,11 +27,11 @@ public class BlogCreateRequestTest {
         Set<ConstraintViolation<BlogCreateRequest>> violations = validator.validate(createRequest);
 
         // Then
-        assertEquals(0, violations.size(), "위반사항이 없습니다.");
+        assertEquals(0, violations.size(), "위반 사항이 없습니다.");
     }
 
     @Test
-    void BlogCreateBlogNameValidation() {
+    void blogCreateBlogNameValidation() {
         // Given
         BlogCreateRequest createRequest = BlogCreateRequestFactory.createBlogCreateRequest(
                 "", "TestBlogDescription");
@@ -45,7 +45,7 @@ public class BlogCreateRequestTest {
     }
 
     @Test
-    void BlogCreateBlogDescriptionValidation() {
+    void blogCreateBlogDescriptionValidation() {
         // Given
         BlogCreateRequest createRequest = BlogCreateRequestFactory.createBlogCreateRequest(
                 "TestBlogName", "");

@@ -46,15 +46,16 @@ public class BlogCommandServiceTest {
     void updateBlogTest() {
         // Given
         Long blogSeq = 1L;
-        BlogUpdateRequest request = BlogUpdateRequestFactory.createBlogUpdateRequest();
+        BlogUpdateRequest updateRequest = BlogUpdateRequestFactory.createBlogUpdateRequest();
 
         // When
-        blogCommandService.updateBlog(blogSeq, request);
+        blogCommandService.updateBlog(blogSeq, updateRequest);
 
         // Then
         verify(blogRepository).updateByBlogSeq(
-                blogSeq, request.getBlogName(),
-                request.getBlogDescription());
+                blogSeq, updateRequest.getBlogName(),
+                updateRequest.getBlogDescription()
+        );
     }
 
     @Test

@@ -35,9 +35,9 @@ class BlogRepositoryTest {
         blogRepository.updateByBlogSeq(blog.getBlogSeq(), newBlogName, newBlogDescription);
         entityManager.flush();
         entityManager.clear();
+        Blog updatedBlog = blogRepository.findById(blog.getBlogSeq()).orElse(null);
 
         // Then
-        Blog updatedBlog = blogRepository.findById(blog.getBlogSeq()).orElse(null);
         assertThat(updatedBlog).isNotNull();
         assertThat(updatedBlog.getBlogName()).isEqualTo(newBlogName);
         assertThat(updatedBlog.getBlogDescription()).isEqualTo(newBlogDescription);

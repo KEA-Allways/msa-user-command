@@ -18,7 +18,7 @@ public class BlogUpdateRequestTest {
     private final Validator validator = factory.getValidator();
 
     @Test
-    void BlogUpdateRequestValidation() {
+    void blogUpdateRequestValidation() {
         // Given
         BlogUpdateRequest updateRequest = BlogUpdateRequestFactory.createBlogUpdateRequest(
                 "UpdateBlogName", "UpdateBlogDescription");
@@ -31,7 +31,7 @@ public class BlogUpdateRequestTest {
     }
 
     @Test
-    void BlogUpdateBlogNameValidation() {
+    void blogUpdateBlogNameValidation() {
         // Given
         BlogUpdateRequest updateRequest = BlogUpdateRequestFactory.createBlogUpdateRequest(
                 "", "UpdateBlogDescription");
@@ -45,7 +45,7 @@ public class BlogUpdateRequestTest {
     }
 
     @Test
-    void BlogUpdateBlogDescriptionValidation() {
+    void blogUpdateBlogDescriptionValidation() {
         // Given
         BlogUpdateRequest updateRequest = BlogUpdateRequestFactory.createBlogUpdateRequest(
                 "UpdateBlogName", "");
