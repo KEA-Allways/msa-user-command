@@ -11,8 +11,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class BlogUpdateRequest {
     @NotBlank(message = "블로그의 새로운 이름을 입력해주세요.")
-    private String newBlogName;
+    private String blogName;
 
     @NotBlank(message = "블로그 새로운 소개를 입력해주세요.")
-    private String newBlogDescription;
+    private String blogDescription;
 }
