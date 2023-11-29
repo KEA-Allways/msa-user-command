@@ -2,24 +2,23 @@ package com.allways.domain.user.handler;
 
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
 @Component
 public class JwtHandler {
     private String type = "Bearer ";
 
-    public String createToken(String encodedKey,String subject,long maxAgeSeconds){
-        Date now=new Date();
+    public String createToken(String encodedKey, String subject, long maxAgeSeconds){
+        Date now = new Date();
         return type+ Jwts.builder()
                 .setSubject(subject)
                 .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime()+maxAgeSeconds*1000L))
+                .setExpiration(new Date(now.getTime()+maxAgeSeconds * 1000L))
                 .signWith(SignatureAlgorithm.HS256,encodedKey)
                 .compact();
     }
 
-    public String extractSubjects(String encodedKey,String token){
+    public String extractSubjects(String encodedKey, String token){
         return parse(encodedKey,token).getBody().getSubject();
     }
 

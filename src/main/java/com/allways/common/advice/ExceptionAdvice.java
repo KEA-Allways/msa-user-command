@@ -1,6 +1,7 @@
 package com.allways.common.advice;
 
 import com.allways.common.response.Response;
+import com.allways.domain.blog.exception.BlogNotFoundException;
 import com.allways.domain.user.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -50,20 +51,20 @@ public class ExceptionAdvice {
     }
 
 
-    @ExceptionHandler(MemberEmailAlreadyExistsException.class)
+    @ExceptionHandler(UserEmailAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public Response memberEmailAlreadyExistsException(MemberEmailAlreadyExistsException e) { // 4
+    public Response memberEmailAlreadyExistsException(UserEmailAlreadyExistsException e) { // 4
         return Response.failure(-1005, e.getMessage() + "은 중복된 이메일 입니다.");
     }
 
 
-    @ExceptionHandler (MemberNicknameAlreadyExistsException.class)
+    @ExceptionHandler (UserNicknameAlreadyExistsException.class)
     @ResponseStatus (HttpStatus.CONFLICT)//401
-    public Response memberNicknameAlreadyExistsException(MemberNicknameAlreadyExistsException e){
+    public Response memberNicknameAlreadyExistsException(UserNicknameAlreadyExistsException e){
         return Response.failure(-1006,e.getMessage()+"은 중복된 닉네임 입니다.");
     }
 
-    @ExceptionHandler (MemberNotFoundException.class)
+    @ExceptionHandler (UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)//404
     public Response memberNotFoundException() {
         return Response.failure(-1007,"요청한 회원을 찾을 수 없습니다.");
@@ -119,4 +120,10 @@ public class ExceptionAdvice {
 //    public Response commentNotFoundException() {
 //        return Response.failure(-1015, "존재하지 않는 댓글입니다.");
 //    }
+
+    @ExceptionHandler(BlogNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Response blogNotFoundException(){
+        return Response.failure(-2000,"요청한 블로그를 찾을 수 없습니다.");
+    }
 }

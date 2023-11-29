@@ -2,7 +2,6 @@ package com.allways.domain.user.config;
 
 import com.allways.domain.user.handler.JwtHandler;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
 public class TokenHelper {
@@ -11,16 +10,14 @@ public class TokenHelper {
     private final long maxAgeSeconds;
 
     public String createToken(String subject){
-        return jwtHandler.createToken(key,subject,maxAgeSeconds);
-
+        return jwtHandler.createToken(key, subject, maxAgeSeconds);
     }
 
     public boolean validate(String token){
-        return jwtHandler.validate(key,token);
+        return jwtHandler.validate(key, token);
     }
 
     public String extractSubject(String token){
-        return jwtHandler.extractSubjects(key,token);
+        return jwtHandler.extractSubjects(key, token);
     }
-
 }

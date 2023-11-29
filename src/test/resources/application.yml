@@ -1,8 +1,8 @@
+# 테스트 설정
 spring:
-  application:
-    name: user-command-service
+  profiles: test
   datasource:
-    url: jdbc:mysql://3.80.230.96/command?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://13.124.80.188:3307/junit?allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
@@ -15,26 +15,6 @@ spring:
           hibernate:
             format_sql: true
 
-  # 로깅 설정
-  logging:
-    level:
-      org.hibernate.SQL: debug
-      org.hibernate.type: trace
-
-  # 서버 설정
-server:
-  port: 8083
-
-# Eureka 클라이언트 설정
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-    hostname: localhost
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://54.87.40.18:8761/eureka
 jwt:
   key:
     #스프링부트 마스터하고싶다
@@ -44,4 +24,3 @@ jwt:
   max-age:
     access: 604800 # 60 * 30 테스트를 위해 원래는 1800이던걸 30으로 줄여놨습니다.
     refresh: 604800 # 60 * 60 * 24 * 7
-
