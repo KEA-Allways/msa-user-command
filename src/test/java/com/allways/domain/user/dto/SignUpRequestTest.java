@@ -30,7 +30,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpUserIdBlankValidation() {
+    void SignUpUserIdValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "",
@@ -48,7 +48,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpPasswordBlankValidation() {
+    void SignUpPasswordValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "userId",
@@ -67,7 +67,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpEmailBlankValidation() {
+    void SignUpEmailValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "userId",
@@ -85,7 +85,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpNicknameBlankValidation() {
+    void SignUpNicknameValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "userId",
@@ -104,7 +104,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpImgBlankValidation() {
+    void SignUpImgValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "userId",

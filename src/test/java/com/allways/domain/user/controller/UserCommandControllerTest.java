@@ -4,17 +4,14 @@ import com.allways.domain.user.dto.UserUpdateRequest;
 import com.allways.domain.user.entity.User;
 import com.allways.domain.user.service.UserCommandService;
 import com.allways.common.factory.user.UserFactory;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -54,7 +51,7 @@ class UserCommandControllerTest {
 
     @Test
     void updateUserTest() throws Exception {
-        // 주어졌을 때 (Given)
+        // Given
         Long userSeq = 1L;
 
         // UserFactory를 사용하여 가짜 User 객체를 생성합니다.
@@ -68,9 +65,11 @@ class UserCommandControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonContent = objectMapper.writeValueAsString(userUpdateRequest);
 
+        // When
         // userService.updateUser()가 호출되면 아무 작업도 수행하지 않도록 설정합니다.
         doNothing().when(userCommandService).updateUser(any(UserUpdateRequest.class), anyLong());
 
+        // Then
         // 해당 HTTP PUT 요청이 성공적으로 수행되는지 확인합니다.
         mockMvc.perform(put("/api/user")
                         .header("userSeq", String.valueOf(userSeq))

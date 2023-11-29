@@ -12,13 +12,11 @@ import com.allways.domain.user.repository.UserRepository;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,10 +36,13 @@ public class SignCommandServiceTest {
 
     @Test
     void signUpValidation() {
+        // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest();
 
+        // When
         signCommandService.SignUpForTest(signUpRequest);
 
+        // Then
         verify(userRepository).save(UserArgumentCaptor.capture());
 
         User savedUser = UserArgumentCaptor.getValue();
@@ -54,10 +55,12 @@ public class SignCommandServiceTest {
 
     @Test
     void signInTest() {
+        // Given
         // Mock 객체 및 데이터 생성
         SignInRequest signInRequest = SignInRequestFactory.createSignInRequest();
         User user = UserFactory.createUser();
 
+        // When
         // Mock 설정
         when(userRepository.findByEmail(signInRequest.getEmail())).thenReturn(Optional.of(user));
         when(passwordEncoder.matches(signInRequest.getPassword(), user.getPassword())).thenReturn(true);
@@ -65,6 +68,7 @@ public class SignCommandServiceTest {
         // 테스트 실행
         SignInResponse signInResponse = signCommandService.signIn(signInRequest);
 
+        // Then
         // 검증
         assertNotNull(signInResponse);
     }
