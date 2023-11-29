@@ -18,7 +18,7 @@ public class UserUpdateRequestTest {
     private final Validator validator = factory.getValidator();
 
     @Test
-    void UserUpdateRequestValidation() {
+    void userUpdateRequestValidation() {
         // Given
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
@@ -35,7 +35,7 @@ public class UserUpdateRequestTest {
     }
 
     @Test
-    void UserUpdatePasswordValidation() {
+    void userUpdatePasswordValidation() {
         // Given
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "",
@@ -52,7 +52,7 @@ public class UserUpdateRequestTest {
     }
 
     @Test
-    void UserUpdateNicknameValidation() {
+    void userUpdateNicknameValidation() {
         // Given
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
@@ -69,7 +69,7 @@ public class UserUpdateRequestTest {
     }
 
     @Test
-    void UserUpdateEmailValidation() {
+    void userUpdateEmailValidation() {
         // Given
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",

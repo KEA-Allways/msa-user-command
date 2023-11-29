@@ -32,7 +32,7 @@ class BlogCommandControllerTest {
     @Mock private BlogCommandService blogCommandService;
 
     @BeforeEach
-    void BeforeEach() {
+    void beforeEach() {
         mockMvc = MockMvcBuilders.standaloneSetup(blogCommandController).build();
     }
 

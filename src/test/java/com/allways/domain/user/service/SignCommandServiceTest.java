@@ -35,7 +35,7 @@ public class SignCommandServiceTest {
     @Captor private ArgumentCaptor<User> UserArgumentCaptor;
 
     @Test
-    void signUpValidation() {
+    void signUpTest() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest();
 

@@ -18,7 +18,7 @@ public class SignUpRequestTest {
     private final Validator validator = factory.getValidator();
 
     @Test
-    void SignUpRequestValidation() {
+    void signUpRequestValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest();
 
@@ -30,7 +30,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpUserIdValidation() {
+    void signUpUserIdValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "",
@@ -48,7 +48,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpPasswordValidation() {
+    void signUpPasswordValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "userId",
@@ -67,7 +67,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpEmailValidation() {
+    void signUpEmailValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "userId",
@@ -85,7 +85,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpNicknameValidation() {
+    void signUpNicknameValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "userId",
@@ -104,7 +104,7 @@ public class SignUpRequestTest {
     }
 
     @Test
-    void SignUpImgValidation() {
+    void signUpImgValidation() {
         // Given
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest(
                 "userId",

@@ -30,7 +30,7 @@ class UserCommandControllerTest {
     @Mock private UserCommandService userCommandService;
 
     @BeforeEach
-    void BeforeEach() {
+    void beforeEach() {
         // MockMvc를 설정하여 컨트롤러를 테스트할 수 있는 환경을 구성합니다.
         mockMvc = MockMvcBuilders.standaloneSetup(userCommandController).build();
     }
