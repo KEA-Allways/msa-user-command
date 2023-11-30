@@ -59,7 +59,8 @@ class BlogCommandControllerTest {
     void updateBlogTest() throws Exception {
         // Given
         Long blogSeq = 1L;
-        BlogUpdateRequest updateRequest = BlogUpdateRequestFactory.createBlogUpdateRequest();
+        BlogUpdateRequest updateRequest = BlogUpdateRequestFactory
+                .createBlogUpdateRequest();
 
         // When, Then
         mockMvc.perform(put("/api/blog/{blogSeq}", blogSeq)

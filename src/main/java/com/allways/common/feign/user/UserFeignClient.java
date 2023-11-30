@@ -10,4 +10,6 @@ public interface UserFeignClient {
     @GetMapping("{userSeq}")
     UserFeignResponse queryUser(@PathVariable Long userSeq);
 
+    @GetMapping("{email}")
+    UserFeignResponse queryUserByEmail(@PathVariable String email);
 }

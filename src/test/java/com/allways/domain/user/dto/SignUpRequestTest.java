@@ -26,7 +26,8 @@ public class SignUpRequestTest {
         Set<ConstraintViolation<SignUpRequest>> violations = validator.validate(signUpRequest);
 
         // Then
-        assertEquals(0, violations.size(), "모든 조건을 만족합니다.");
+        assertEquals(0, violations.size(),
+                "위반 사항이 없습니다.");
     }
 
     @Test
@@ -41,10 +42,12 @@ public class SignUpRequestTest {
         );
 
         // When
-        Set<ConstraintViolation<SignUpRequest>> violations = validator.validate(signUpRequest);
+        Set<ConstraintViolation<SignUpRequest>> violations =
+                validator.validate(signUpRequest);
 
         // Then
-        assertEquals(1, violations.size(), "올바른 이메일을 입력하셔야 합니다.");
+        assertEquals(1, violations.size(),
+                "올바른 이메일을 입력하셔야 합니다.");
     }
 
     @Test

@@ -30,7 +30,7 @@ public class SignInRequestTest {
     }
 
     @Test
-    void signInEmailBlankValidation() {
+    void signInEmailValidation() {
         // Given
         SignInRequest signInRequest = SignInRequestFactory.createSignInRequest(
                 "", "password");
@@ -43,7 +43,7 @@ public class SignInRequestTest {
     }
 
     @Test
-    void signInPasswordBlankValidation() {
+    void signInPasswordValidation() {
         // Given
         SignInRequest signInRequest = SignInRequestFactory.createSignInRequest(
                 "email@email.com", "");

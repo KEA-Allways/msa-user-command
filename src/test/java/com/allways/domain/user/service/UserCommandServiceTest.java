@@ -20,8 +20,8 @@ public class UserCommandServiceTest {
     @Test
     void updateUserTest() {
         // Given
-        UserUpdateRequest request = UserUpdateRequestFactory.createUserUpdateRequest();
         Long userSeq = 1L;
+        UserUpdateRequest request = UserUpdateRequestFactory.createUserUpdateRequest();
 
         // When
         userCommandService.updateUser(request, userSeq);
