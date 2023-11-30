@@ -44,3 +44,7 @@ jwt:
     access: 604800 # 60 * 30 테스트를 위해 원래는 1800이던걸 30으로 줄여놨습니다.
     refresh: 604800 # 60 * 60 * 24 * 7
 
+
+env :
+  blog-feign-url : http://localhost:8084/api/blogs/feign
+  user-feign-url : http://localhost:8084/api/users/feign
