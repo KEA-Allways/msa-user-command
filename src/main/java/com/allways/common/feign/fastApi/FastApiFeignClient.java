@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @FeignClient(name = "fastApi", url = "http://localhost:8000")
 public interface FastApiFeignClient {
 
-    @PostMapping(value = "/receive_userProfileImg")
+    @PostMapping(value = "/api/feign/profileImg")
     @ResponseStatus(HttpStatus.CREATED)
-    void sendDataToFastApiUserProfileImg(@RequestBody FastApiUserProfileImgDataRequest request);
+    void saveProfileImgToFastApi(@RequestBody FastApiUserProfileImgDataRequest request);
 }
