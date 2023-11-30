@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@FeignClient(name = "fastApi", url = "${env.file-feign-url}")
+@FeignClient(name = "fastApi", url = "${env.file-command-feign-url}")
 public interface FastApiFeignClient {
 
-    @PostMapping(value = "/api/feign/profileImg")
+    @PostMapping(value = "/profileImg")
     @ResponseStatus(HttpStatus.CREATED)
     void saveProfileImgToFastApi(@RequestBody FastApiUserProfileImgDataRequest request);
 }

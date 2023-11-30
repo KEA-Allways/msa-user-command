@@ -49,4 +49,4 @@ jwt:
 env :
   blog-feign-url : http://44.201.129.31:8084/api/blogs/feign
   user-feign-url : http://44.201.129.31:8084/api/users/feign
-  file-feign-url : http://3.86.230.148:8087
+  file-command-feign-url : http://3.86.230.148:8087/api/feign
