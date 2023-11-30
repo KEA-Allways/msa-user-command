@@ -18,7 +18,6 @@ public class AllwaysApplication {
 		SpringApplication.run(AllwaysApplication.class, args);
 	}
 
+
 }
-
-
 
