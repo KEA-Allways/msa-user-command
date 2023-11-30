@@ -29,9 +29,5 @@ public class UserCommandController {
     }
 
 
-    @PostMapping("/api/user/test/command")
-    @ResponseStatus(HttpStatus.OK)
-    public String test () {
-        return "/api/user/test/command";
-    }
+
 }
