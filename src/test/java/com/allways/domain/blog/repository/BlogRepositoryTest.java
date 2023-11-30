@@ -32,7 +32,10 @@ class BlogRepositoryTest {
         entityManager.persist(blog);
 
         // When
-        blogRepository.updateByBlogSeq(blog.getBlogSeq(), newBlogName, newBlogDescription);
+        blogRepository.updateByBlogSeq(
+                blog.getBlogSeq(),
+                newBlogName,
+                newBlogDescription);
         entityManager.flush();
         entityManager.clear();
         Blog updatedBlog = blogRepository.findById(blog.getBlogSeq()).orElse(null);

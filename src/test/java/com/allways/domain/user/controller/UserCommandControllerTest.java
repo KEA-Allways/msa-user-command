@@ -36,20 +36,6 @@ class UserCommandControllerTest {
     }
 
     @Test
-    void deleteUserTest() throws Exception {
-        // 주어졌을 때 (Given)
-        Long userSeq = 1L;
-        // userService.deleteUser()가 호출되면 아무 작업도 수행하지 않도록 설정합니다.
-        doNothing().when(userCommandService).deleteUser(userSeq);
-
-        // 해당 HTTP DELETE 요청이 성공적으로 수행되는지 확인합니다.
-        mockMvc.perform(delete("/api/user")
-                        .header("userSeq", String.valueOf(userSeq))
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     void updateUserTest() throws Exception {
         // Given
         Long userSeq = 1L;
@@ -62,9 +48,6 @@ class UserCommandControllerTest {
                 user.getPassword(), user.getNickname(),
                 user.getEmail(), user.getProfileImgSeq());
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonContent = objectMapper.writeValueAsString(userUpdateRequest);
-
         // When
         // userService.updateUser()가 호출되면 아무 작업도 수행하지 않도록 설정합니다.
         doNothing().when(userCommandService).updateUser(any(UserUpdateRequest.class), anyLong());
@@ -74,7 +57,30 @@ class UserCommandControllerTest {
         mockMvc.perform(put("/api/user")
                         .header("userSeq", String.valueOf(userSeq))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonContent))
+                        .content(asJsonString(userUpdateRequest)))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void deleteUserTest() throws Exception {
+        // Given
+        Long userSeq = 1L;
+        // userService.deleteUser()가 호출되면 아무 작업도 수행하지 않도록 설정합니다.
+        doNothing().when(userCommandService).deleteUser(userSeq);
+
+        // When, Then
+        // 해당 HTTP DELETE 요청이 성공적으로 수행되는지 확인합니다.
+        mockMvc.perform(delete("/api/user")
+                        .header("userSeq", String.valueOf(userSeq))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    private String asJsonString(Object object) {
+        try {
+            return new ObjectMapper().writeValueAsString(object);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

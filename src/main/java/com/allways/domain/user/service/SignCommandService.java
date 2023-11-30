@@ -1,6 +1,9 @@
 package com.allways.domain.user.service;
 
+import com.allways.common.factory.user.UserFactory;
 import com.allways.common.feign.fastApi.FastApiClientService;
+import com.allways.common.feign.user.UserFeignResponse;
+import com.allways.common.feign.user.UserFeignService;
 import com.allways.domain.user.config.TokenHelper;
 import com.allways.domain.user.dto.AccessTokenResponse;
 import com.allways.domain.user.dto.SignInRequest;
@@ -27,6 +30,7 @@ public class SignCommandService {
     private final TokenHelper accessTokenHelper;
     private final TokenHelper refreshTokenHelper;
     private final FastApiClientService fastApiClientService;
+    private final UserFeignService userFeignService;
 
     @Transactional
     //생성일 삭제일 추가
@@ -47,18 +51,30 @@ public class SignCommandService {
 
     @Transactional(readOnly = true)
     public SignInResponse signIn(SignInRequest req) {
-        //member 없으면 LoginFailureException
-        User user = userRepository.findByEmail(req.getEmail()).orElseThrow(LoginFailureException::new);
-        //비밀번호 검사
-        validatePassword(req, user);
+        // feign으로 msa-user-query에서 user에 대한 정보를 읽어옴
+        UserFeignResponse response = userFeignService
+                .queryUserByEmail(req.getEmail());
 
-        //id를 subject 저장
-        String subject = createSubject(user);
-        //id를 통해서 토큰 생성이고
+        // response로 부터 만들어낸 User 객체
+        User foundUser = UserFactory.createUser(
+                response.getUserId(),
+                response.getPassword(),
+                response.getNickname(),
+                response.getEmail(),
+                response.getProfileImgSeq()
+        );
+
+        // 비밀번호 검사
+        validatePassword(req, foundUser);
+
+        // id를 subject 저장
+        String subject = createSubject(foundUser);
+        // id를 통해서 토큰 생성이고
         String accessToken = accessTokenHelper.createToken(subject);
         String refreshToken = refreshTokenHelper.createToken(subject);
         return new SignInResponse(accessToken, refreshToken);
     }
+
     private void validatePassword(SignInRequest req, User user) {
         if(!passwordEncoder.matches(req.getPassword(), user.getPassword())) {
             //비밀번호 다르면 exception

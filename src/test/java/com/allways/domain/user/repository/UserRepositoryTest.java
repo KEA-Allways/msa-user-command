@@ -1,14 +1,18 @@
 package com.allways.domain.user.repository;
 
+import com.allways.common.factory.user.UserUpdateRequestFactory;
+import com.allways.domain.user.dto.UserUpdateRequest;
 import com.allways.domain.user.entity.User;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // 실제 데이터베이스 사용
 @SpringBootTest
@@ -17,36 +21,29 @@ class UserRepositoryTest {
     @Autowired private UserRepository userRepository;
 
     @Test
+    @Transactional
+    @Rollback
     void updateByUserSeqTest() {
         // Given
-        String newPassword = "newPassword3";
-        String newNickname = "newNickname3";
-        String newEmail = "newEmail3@example.com";
-        String newProfileImgSeq = "newProfileImgSeq3";
-
-        User user = new User("userId5", "password5",
-                "nickname5", "email5@example.com", "profileImgSeq5");
-        userRepository.save(user);
+        Long userSeq = 3L;
+        UserUpdateRequest updateRequest = UserUpdateRequestFactory
+                .createUserUpdateRequest();
 
         // When
-        User updatedUser = userRepository.findById(user.getUserSeq()).orElse(null);
-        if (updatedUser != null) {
-            updatedUser.setPassword(newPassword);
-            updatedUser.setNickname(newNickname);
-            updatedUser.setEmail(newEmail);
-            updatedUser.setProfileImgSeq(newProfileImgSeq);
-            userRepository.save(updatedUser);
-        }
+        userRepository.updateByUserSeq(
+                userSeq,
+                updateRequest.getPassword(),
+                updateRequest.getNickname(),
+                updateRequest.getEmail(),
+                updateRequest.getProfileImgSeq()
+        );
+
+        User updatedUser = userRepository.getById(userSeq);
 
         // Then
-        User fetchedUpdatedUser = userRepository.findById(user.getUserSeq()).orElse(null);
-        assertThat(fetchedUpdatedUser).isNotNull();
-        assertThat(fetchedUpdatedUser.getPassword()).isEqualTo(newPassword);
-        assertThat(fetchedUpdatedUser.getNickname()).isEqualTo(newNickname);
-        assertThat(fetchedUpdatedUser.getEmail()).isEqualTo(newEmail);
-        assertThat(fetchedUpdatedUser.getProfileImgSeq()).isEqualTo(newProfileImgSeq);
-
-        userRepository.deleteById(updatedUser.getUserSeq());
+        assertEquals(updateRequest.getNickname(), updatedUser.getNickname());
+        assertEquals(updateRequest.getEmail(), updatedUser.getEmail());
+        assertEquals(updateRequest.getProfileImgSeq(), updatedUser.getProfileImgSeq());
     }
 }
 
