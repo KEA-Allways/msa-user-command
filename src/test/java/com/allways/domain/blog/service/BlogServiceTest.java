@@ -19,9 +19,9 @@ import static org.mockito.Mockito.verify;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class BlogCommandServiceTest {
+public class BlogServiceTest {
     @Mock private BlogRepository blogRepository;
-    @InjectMocks private BlogCommandService blogCommandService;
+    @InjectMocks private BlogService blogService;
     @Captor private ArgumentCaptor<Blog> BlogArgumentCaptor;
 
     @Test
@@ -31,7 +31,7 @@ public class BlogCommandServiceTest {
         Long userSeq = 1L;
 
         // When
-        blogCommandService.createBlog(createRequest, userSeq);
+        blogService.createBlog(createRequest, userSeq);
 
         // Then
         verify(blogRepository).save(BlogArgumentCaptor.capture());
@@ -46,10 +46,11 @@ public class BlogCommandServiceTest {
     void updateBlogTest() {
         // Given
         Long blogSeq = 1L;
-        BlogUpdateRequest updateRequest = BlogUpdateRequestFactory.createBlogUpdateRequest();
+        BlogUpdateRequest updateRequest = BlogUpdateRequestFactory
+                .createBlogUpdateRequest();
 
         // When
-        blogCommandService.updateBlog(blogSeq, updateRequest);
+        blogService.updateBlog(blogSeq, updateRequest);
 
         // Then
         verify(blogRepository).updateByBlogSeq(
@@ -64,7 +65,7 @@ public class BlogCommandServiceTest {
         Long blogSeq = 1L;
 
         // When
-        blogCommandService.deleteBlog(blogSeq);
+        blogService.deleteBlog(blogSeq);
 
         // Then
         verify(blogRepository).deleteById(blogSeq);

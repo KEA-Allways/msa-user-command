@@ -3,7 +3,7 @@ package com.allways.domain.user.controller;
 import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignInResponse;
 import com.allways.domain.user.dto.SignUpRequest;
-import com.allways.domain.user.service.SignCommandService;
+import com.allways.domain.user.service.SignService;
 import com.allways.common.factory.user.SignInRequestFactory;
 import com.allways.common.factory.user.SignInResponseFactory;
 import com.allways.common.factory.user.SignUpRequestFactory;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class SignCommandControllerTest {
     private MockMvc mockMvc;
     @InjectMocks private SignCommandController signCommandController;
-    @Mock private SignCommandService signService;
+    @Mock private SignService signService;
 
     @BeforeEach
     void beforeEach() {

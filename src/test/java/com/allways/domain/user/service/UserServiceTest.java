@@ -13,9 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class UserCommandServiceTest {
+public class UserServiceTest {
     @Mock private UserRepository userRepository;
-    @InjectMocks private UserCommandService userCommandService;
+    @InjectMocks private UserService userService;
 
     @Test
     void updateUserTest() {
@@ -24,7 +24,7 @@ public class UserCommandServiceTest {
         UserUpdateRequest request = UserUpdateRequestFactory.createUserUpdateRequest();
 
         // When
-        userCommandService.updateUser(request, userSeq);
+        userService.updateUser(request, userSeq);
 
         // Then
         verify(userRepository).updateByUserSeq(
@@ -39,7 +39,7 @@ public class UserCommandServiceTest {
         Long userSeq = 1L;
 
         // When
-        userCommandService.deleteUser(userSeq);
+        userService.deleteUser(userSeq);
 
         // Then
         verify(userRepository).deleteById(userSeq);

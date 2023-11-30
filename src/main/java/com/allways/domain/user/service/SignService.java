@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class SignCommandService {
+public class SignService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenHelper accessTokenHelper;

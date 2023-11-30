@@ -2,7 +2,7 @@ package com.allways.domain.blog.controller;
 
 import com.allways.domain.blog.dto.BlogCreateRequest;
 import com.allways.domain.blog.dto.BlogUpdateRequest;
-import com.allways.domain.blog.service.BlogCommandService;
+import com.allways.domain.blog.service.BlogService;
 import com.allways.common.factory.blog.BlogCreateRequestFactory;
 import com.allways.common.factory.blog.BlogUpdateRequestFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class BlogCommandControllerTest {
     private MockMvc mockMvc;
     @InjectMocks private BlogCommandController blogCommandController;
-    @Mock private BlogCommandService blogCommandService;
+    @Mock private BlogService blogService;
 
     @BeforeEach
     void beforeEach() {
@@ -39,12 +39,13 @@ class BlogCommandControllerTest {
     @Test
     void createBlogTest() throws Exception {
         // Given
-        BlogCreateRequest createRequest = BlogCreateRequestFactory.createBlogCreateRequest();
+        BlogCreateRequest createRequest = BlogCreateRequestFactory
+                .createBlogCreateRequest();
 
         // When, Then
         MvcResult result = mockMvc.perform(post("/api/blog")
+                        .header("userSeq", String.valueOf(1L))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .header("userSeq", String.valueOf(1L)) // userSeq 헤더 추가
                         .content(asJsonString(createRequest)))
                 .andExpect(status().isCreated())
                 .andReturn();
@@ -52,7 +53,7 @@ class BlogCommandControllerTest {
         MockHttpServletRequest request = result.getRequest();
         String userSeq = request.getHeader("userSeq");
 
-        verify(blogCommandService).createBlog(createRequest, Long.parseLong(userSeq));
+        verify(blogService).createBlog(createRequest, Long.parseLong(userSeq));
     }
 
     @Test
@@ -68,7 +69,7 @@ class BlogCommandControllerTest {
                         .content(asJsonString(updateRequest)))
                 .andExpect(status().isOk());
 
-        verify(blogCommandService).updateBlog(blogSeq, updateRequest);
+        verify(blogService).updateBlog(blogSeq, updateRequest);
     }
 
     @Test
@@ -80,7 +81,7 @@ class BlogCommandControllerTest {
         mockMvc.perform(delete("/api/blog/{blogSeq}", blogSeq))
                 .andExpect(status().isOk());
 
-        verify(blogCommandService).deleteBlog(blogSeq);
+        verify(blogService).deleteBlog(blogSeq);
     }
 
     // 객체를 JSON 문자열로 변환하는 유틸리티 메서드

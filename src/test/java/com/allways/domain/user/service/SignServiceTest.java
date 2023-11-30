@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class SignCommandServiceTest {
+public class SignServiceTest {
     @Mock private UserRepository userRepository;
-    @InjectMocks private SignCommandService signCommandService;
+    @InjectMocks private SignService signService;
     @Captor private ArgumentCaptor<User> UserArgumentCaptor;
 
     @Test
@@ -28,7 +28,7 @@ public class SignCommandServiceTest {
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest();
 
         // When
-        signCommandService.SignUpForTest(signUpRequest);
+        signService.SignUpForTest(signUpRequest);
 
         // Then
         verify(userRepository).save(UserArgumentCaptor.capture());

@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 @Service
 @Transactional
-public class BlogCommandService {
+public class BlogService {
     private final BlogRepository blogRepository;
 
     // 토큰에서 얻은 userSeq

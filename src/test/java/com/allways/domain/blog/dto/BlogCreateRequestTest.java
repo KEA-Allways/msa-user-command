@@ -20,14 +20,16 @@ public class BlogCreateRequestTest {
     @Test
     void blogCreateRequestValidation() {
         // Given
-        BlogCreateRequest createRequest = BlogCreateRequestFactory.createBlogCreateRequest(
-                "TestBlogName", "TestBlogDescription");
+        BlogCreateRequest createRequest = BlogCreateRequestFactory
+                .createBlogCreateRequest();
 
         // When
-        Set<ConstraintViolation<BlogCreateRequest>> violations = validator.validate(createRequest);
+        Set<ConstraintViolation<BlogCreateRequest>> violations =
+                validator.validate(createRequest);
 
         // Then
-        assertEquals(0, violations.size(), "위반 사항이 없습니다.");
+        assertEquals(0, violations.size(),
+                "위반 사항이 없습니다.");
     }
 
     @Test
@@ -37,11 +39,13 @@ public class BlogCreateRequestTest {
                 "", "TestBlogDescription");
 
         // When
-        Set<ConstraintViolation<BlogCreateRequest>> violations = validator.validate(createRequest);
+        Set<ConstraintViolation<BlogCreateRequest>> violations =
+                validator.validate(createRequest);
 
         // Then
         // blogName은 NotBlank를 위반한다.
-        assertEquals(1, violations.size(), "올바른 블로그 이름을 입력해주세요.");
+        assertEquals(1, violations.size(),
+                "올바른 블로그 이름을 입력해주세요.");
     }
 
     @Test

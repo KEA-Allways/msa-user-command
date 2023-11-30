@@ -8,7 +8,7 @@ import com.allways.domain.user.exception.AuthenticationEntryPointException;
 import com.allways.domain.user.exception.LoginFailureException;
 import com.allways.domain.user.exception.UserEmailAlreadyExistsException;
 import com.allways.domain.user.exception.UserNicknameAlreadyExistsException;
-import com.allways.domain.user.service.SignCommandService;
+import com.allways.domain.user.service.SignService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +36,7 @@ public class SignCommandControllerAdviceTest {
     @InjectMocks
 	SignCommandController signCommandController;
     @Mock
-    SignCommandService signService;
+    SignService signService;
     MockMvc mockMvc;
     ObjectMapper objectMapper = new ObjectMapper();
 

@@ -4,7 +4,7 @@ import com.allways.domain.user.controller.SignCommandController;
 import com.allways.domain.user.dto.SignInResponse;
 import com.allways.domain.user.dto.SignUpRequest;
 import com.allways.domain.user.dto.SignInRequest;
-import com.allways.domain.user.service.SignCommandService;
+import com.allways.domain.user.service.SignService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +32,7 @@ public class SignCommandControllerTest {
     @InjectMocks
 	SignCommandController signCommandController;
     @Mock
-    SignCommandService signService;
+    SignService signService;
         MockMvc mockMvc;
     ObjectMapper objectMapper = new ObjectMapper(); // 1
     @BeforeEach
