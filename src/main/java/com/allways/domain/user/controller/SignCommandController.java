@@ -3,7 +3,7 @@ package com.allways.domain.user.controller;
 import com.allways.common.response.Response;
 import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignUpRequest;
-import com.allways.domain.user.service.SignCommandService;
+import com.allways.domain.user.service.SignService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,7 +18,7 @@ import static com.allways.common.response.Response.success;
 @RequiredArgsConstructor
 @Slf4j
 public class SignCommandController {
-    private final SignCommandService signService;
+    private final SignService signService;
 
     @PostMapping("/api/auth/sign-up")
     @ResponseStatus(HttpStatus.CREATED)

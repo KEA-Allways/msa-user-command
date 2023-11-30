@@ -25,8 +25,8 @@ class BlogRepositoryTest {
     @Transactional
     void updateByBlogSeqTest() {
         // Given
-        String newBlogName = "UpdateBlogName";
-        String newBlogDescription = "UpdateBlogDescription";
+        String newBlogName = "updateBlogName";
+        String newBlogDescription = "updateBlogDescription";
 
         Blog blog = BlogFactory.createBlog();
         entityManager.persist(blog);
