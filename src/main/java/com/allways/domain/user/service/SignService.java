@@ -4,6 +4,7 @@ import com.allways.common.factory.user.UserFactory;
 import com.allways.common.feign.fastApi.FastApiClientService;
 import com.allways.common.feign.user.UserFeignResponse;
 import com.allways.common.feign.user.UserFeignService;
+import com.allways.common.feign.user.UserLoginFeignResponse;
 import com.allways.domain.user.config.TokenHelper;
 import com.allways.domain.user.dto.AccessTokenResponse;
 import com.allways.domain.user.dto.SignInRequest;
@@ -52,24 +53,20 @@ public class SignService {
     @Transactional(readOnly = true)
     public SignInResponse signIn(SignInRequest req) {
         // feign으로 msa-user-query에서 user에 대한 정보를 읽어옴
-        UserFeignResponse response = userFeignService
-                .queryUserByEmail(req.getEmail());
+        UserFeignResponse response = userFeignService.queryUserByEmail(req.getEmail());
 
-        // response로 부터 만들어낸 User 객체
-        User foundUser = UserFactory.createUser(
-                response.getUserId(),
-                response.getPassword(),
-                response.getNickname(),
-                response.getEmail(),
-                response.getProfileImgSeq()
-        );
+        User foundUser = new User(response.getUserSeq(),
+                                    response.getUserId(),
+                                    response.getPassword(),
+                                    response.getNickname(),
+                                    response.getEmail(),
+                                    response.getProfileImgSeq());
 
         // 비밀번호 검사
         validatePassword(req, foundUser);
 
-        // id를 subject 저장
+        // subject에 userSeq로 지정
         String subject = createSubject(foundUser);
-        // id를 통해서 토큰 생성이고
         String accessToken = accessTokenHelper.createToken(subject);
         String refreshToken = refreshTokenHelper.createToken(subject);
         return new SignInResponse(accessToken, refreshToken);

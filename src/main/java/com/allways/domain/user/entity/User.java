@@ -44,4 +44,13 @@ public class User extends EntityDate {
 		this.email=email;
 		this.profileImgSeq = profileImgSeq;
 	}
+
+	public User(Long userSeq, String userId, String password, String nickname, String email, String profileImgSeq){
+		this.userSeq=userSeq;
+		this.userId=userId;
+		this.password=password;
+		this.nickname=nickname;
+		this.email=email;
+		this.profileImgSeq = profileImgSeq;
+	}
 }
