@@ -48,3 +48,4 @@ jwt:
 env :
   blog-feign-url : http://localhost:8084/api/blogs/feign
   user-feign-url : http://localhost:8084/api/users/feign
+  file-feign-url : http://localhost:8000
