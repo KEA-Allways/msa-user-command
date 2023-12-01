@@ -15,25 +15,14 @@ spring:
       properties:
         hibernate:
           format_sql: validate
-      ddl-auto: update
 
-  profiles:
-    active: local
-    include: secret
-  #    generate-ddl: true
-#      ddl-auto: none
- #      ddl-auto: create-drop
 
-logging:
-  level:
-    org.hibernate.SQL: debug    # Logger
-    org.hibernate.type: trace   # Show Query Parameter
 
-  # 로깅 설정
   logging:
     level:
-      org.hibernate.SQL: debug
-      org.hibernate.type: trace
+      org.hibernate.SQL: debug    # Logger
+      org.hibernate.type: trace   # Show Query Parameter
+
 
   # 서버 설정
 server:
