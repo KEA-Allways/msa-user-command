@@ -22,11 +22,11 @@ public class BlogCommandService {
         return new BlogCreateResponse(blog.getBlogSeq());
     }
 
-    public void updateBlog(Long blogSeq, BlogUpdateRequest req) {
-        blogRepository.updateByBlogSeq(blogSeq, req.getBlogName(), req.getBlogDescription());
+    public void updateBlog(Long userSeq, BlogUpdateRequest req) {
+        blogRepository.updateByUserSeq(userSeq, req.getBlogName(), req.getBlogDescription());
     }
 
-    public void deleteBlog(Long blogSeq) {
-        blogRepository.deleteById(blogSeq);
+    public void deleteBlog(Long userSeq) {
+        blogRepository.deleteByUserSeq(userSeq);
     }
 }

@@ -18,6 +18,10 @@ public interface UserRepository extends JpaRepository<User,Long> {
     boolean existsByNickname(String nickname); // 4
 
     @Modifying
-    @Query("UPDATE User u SET u.password = :password, u.nickname = :nickname, u.email = :email, u.profileImgSeq = :profileImgSeq WHERE u.userSeq = :userSeq")
-    void updateByUserSeq(Long userSeq, String password, String nickname, String email, String profileImgSeq);
+    @Query("UPDATE User u SET u.password = :password, u.nickname = :nickname, u.profileImgSeq = :profileImgSeq WHERE u.userSeq = :userSeq")
+    void updateByUserSeq(Long userSeq, String password, String nickname,String profileImgSeq);
+
+    @Modifying
+    @Query("UPDATE User u SET  u.nickname = :nickname, u.profileImgSeq = :profileImgSeq WHERE u.userSeq = :userSeq")
+    void updateByUserSeqWithoutPassword(Long userSeq,  String nickname,String profileImgSeq);
 }

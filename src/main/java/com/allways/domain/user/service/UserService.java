@@ -1,11 +1,10 @@
 package com.allways.domain.user.service;
 
-import com.allways.domain.user.dto.UserDto;
+import com.allways.common.feign.fastApi.FastApiClientService;
 import com.allways.domain.user.dto.UserUpdateRequest;
-import com.allways.domain.user.entity.User;
-import com.allways.domain.user.exception.UserNotFoundException;
 import com.allways.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,12 +14,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final FastApiClientService fastApiClientService;
 
     @Transactional
-    public void updateUser(UserUpdateRequest req, Long userSeq) {
-        userRepository.updateByUserSeq(userSeq, req.getPassword(),
-                req.getNickname(), req.getEmail(),
-                req.getProfileImgSeq());
+    public void updateUserWithPassword(UserUpdateRequest req, Long userSeq) {
+        String password =passwordEncoder.encode(req.getPassword());
+        userRepository.updateByUserSeq(userSeq, password,
+                req.getNickname(),req.getProfileImgSeq());
+        fastApiClientService.sendDataForUpdateToFastApiUserProfileImg(userSeq, req.getProfileImgSeq());
+    }
+
+    @Transactional
+    public void updateUserWithoutPassword(UserUpdateRequest req, Long userSeq) {
+        userRepository.updateByUserSeqWithoutPassword(userSeq, req.getNickname(),req.getProfileImgSeq());
+        fastApiClientService.sendDataForUpdateToFastApiUserProfileImg(userSeq, req.getProfileImgSeq());
     }
 
     @Transactional

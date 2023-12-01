@@ -22,17 +22,17 @@ public class BlogCommandController {
         return Response.success(blogCommandService.createBlog(req, userSeq));
     }
 
-    @PutMapping("/api/blog/{blogSeq}")
+    @PutMapping("/api/blog")
     @ResponseStatus(HttpStatus.OK)
-    public Response updateBlog(@PathVariable Long blogSeq, @RequestBody BlogUpdateRequest req) {
-        blogCommandService.updateBlog(blogSeq, req);
+    public Response updateBlog(@RequestHeader(value = "userSeq") Long userSeq, @RequestBody BlogUpdateRequest req) {
+        blogCommandService.updateBlog(userSeq, req);
         return Response.success();
     }
 
-    @DeleteMapping("/api/blog/{blogSeq}")
+    @DeleteMapping("/api/blog")
     @ResponseStatus(HttpStatus.OK)
-    public Response deleteBlog(@PathVariable Long blogSeq) {
-        blogCommandService.deleteBlog(blogSeq);
+    public Response deleteBlog(@RequestHeader(value = "userSeq") Long userSeq) {
+        blogCommandService.deleteBlog(userSeq);
         return Response.success();
     }
 }
