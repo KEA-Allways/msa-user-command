@@ -12,7 +12,7 @@ public class FastApiClientService {
 
     public void sendDataToFastApiUserProfileImg(Long userSeq, String imageUrl){
         FastApiUserProfileImgDataRequest request = new FastApiUserProfileImgDataRequest(userSeq, imageUrl);
-        fastApiFeignClient.sendDataToFastApiUserProfileImg(request);
+        fastApiFeignClient.saveProfileImgToFastApi(request);
     }
 
     public void sendDataForUpdateToFastApiUserProfileImg(Long userSeq,String imageUrl){

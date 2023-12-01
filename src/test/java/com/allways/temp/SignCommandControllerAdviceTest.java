@@ -1,4 +1,4 @@
-package com.allways.controller.sign;
+package com.allways.temp;
 
 import com.allways.common.advice.ExceptionAdvice;
 import com.allways.domain.user.controller.SignCommandController;
@@ -21,8 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static com.allways.factory.SignInRequestFactory.createSignInRequest;
-import static com.allways.factory.SignUpRequestFactory.createSignUpRequest;
+import static com.allways.common.factory.user.SignInRequestFactory.createSignInRequest;
+import static com.allways.common.factory.user.SignUpRequestFactory.createSignUpRequest;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;

@@ -1,4 +1,4 @@
-package com.allways.controller.sign;
+package com.allways.temp;
 
 import com.allways.domain.user.controller.SignCommandController;
 import com.allways.domain.user.dto.SignInResponse;
@@ -17,10 +17,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static com.allways.dto.RefreshTokenResponseFactory.createRefreshTokenResponse;
-import static com.allways.factory.SignInRequestFactory.createSignInRequest;
+import static com.allways.temp.RefreshTokenResponseFactory.createRefreshTokenResponse;
+import static com.allways.common.factory.user.SignInRequestFactory.createSignInRequest;
 
-import static com.allways.factory.SignUpRequestFactory.createSignUpRequest;
+import static com.allways.common.factory.user.SignUpRequestFactory.createSignUpRequest;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
