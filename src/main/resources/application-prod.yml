@@ -2,7 +2,7 @@ spring:
   application:
     name: user-command-service
   datasource:
-    url: jdbc:mysql://3.80.230.96/command?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://3.80.230.96/USER_BLOG_DB?allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
@@ -33,7 +33,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://54.87.40.18:8761/eureka
+      defaultZone: http://54.237.219.35:8761/eureka
 
 
 jwt:
