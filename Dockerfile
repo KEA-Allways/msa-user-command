@@ -6,6 +6,7 @@ COPY settings.gradle .
 COPY src src
 RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
+COPY elastic-apm-agent-1.44.0.jar .
 FROM openjdk:11-slim
 COPY --from=builder build/libs/*.jar msa-user-command.jar
 COPY --from=builder elastic-apm-agent-1.44.0.jar elastic-apm-agent-1.44.0.jar
