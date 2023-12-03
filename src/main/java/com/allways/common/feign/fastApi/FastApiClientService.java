@@ -14,4 +14,9 @@ public class FastApiClientService {
         FastApiUserProfileImgDataRequest request = new FastApiUserProfileImgDataRequest(userSeq, imageUrl);
         fastApiFeignClient.saveProfileImgToFastApi(request);
     }
+
+    public void sendDataForUpdateToFastApiUserProfileImg(Long userSeq,String imageUrl){
+        FastApiUserProfileImgDataRequest request = new FastApiUserProfileImgDataRequest(userSeq, imageUrl);
+        fastApiFeignClient.sendDataForUpdateToFastApiUserProfileImg(request);
+    }
 }

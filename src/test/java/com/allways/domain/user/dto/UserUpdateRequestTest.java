@@ -23,7 +23,6 @@ public class UserUpdateRequestTest {
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
                 "TestNickname",
-                "Test@example.com",
                 "profileImg"
         );
 
@@ -40,7 +39,6 @@ public class UserUpdateRequestTest {
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "",
                 "TestNickname",
-                "Test@example.com",
                 "profileImg"
         );
 
@@ -57,7 +55,6 @@ public class UserUpdateRequestTest {
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
                 "",
-                "Test@example.com",
                 "profileImg"
         );
 
@@ -74,7 +71,6 @@ public class UserUpdateRequestTest {
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
                 "TestNickname",
-                "",
                 "profileImg"
         );
 

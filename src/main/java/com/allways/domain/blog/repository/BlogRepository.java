@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface BlogRepository extends JpaRepository<Blog, Long> {
     @Modifying
-    @Query("UPDATE Blog b SET b.blogName = :blogName, b.blogDescription = :blogDescription  WHERE b.blogSeq= :blogSeq")
-    void updateByBlogSeq(Long blogSeq, String blogName, String blogDescription);
+    @Query("UPDATE Blog b SET b.blogName = :blogName, b.blogDescription = :blogDescription  WHERE b.userSeq= :userSeq")
+    void updateByUserSeq(Long userSeq, String blogName, String blogDescription);
+
+    void deleteByUserSeq(Long userSeq);
 }

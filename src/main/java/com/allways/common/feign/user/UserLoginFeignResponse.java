@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class UserFeignResponse {
+public class UserLoginFeignResponse {
+
     private Long userSeq;
     private String userId;
     private String nickname;

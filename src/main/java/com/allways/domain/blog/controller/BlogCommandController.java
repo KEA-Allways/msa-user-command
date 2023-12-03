@@ -24,14 +24,14 @@ public class BlogCommandController {
         return Response.success();
     }
 
-    @PutMapping("/api/blog/{blogSeq}")
+    @PutMapping("/api/blog")
     @ResponseStatus(HttpStatus.OK)
     public Response updateBlog(@PathVariable Long blogSeq, @RequestBody BlogUpdateRequest req) {
         blogService.updateBlog(blogSeq, req);
         return Response.success();
     }
 
-    @DeleteMapping("/api/blog/{blogSeq}")
+    @DeleteMapping("/api/blog")
     @ResponseStatus(HttpStatus.OK)
     public Response deleteBlog(@PathVariable Long blogSeq) {
         blogService.deleteBlog(blogSeq);
