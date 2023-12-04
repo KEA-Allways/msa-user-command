@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@FeignClient(name = "fastApi", url = "${env.file-command-feign-url}")
+@FeignClient(name = "file-command-service", url = "api/feign")
 public interface FastApiFeignClient {
 
     @PostMapping(value = "/profileImg")

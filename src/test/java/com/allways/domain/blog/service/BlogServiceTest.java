@@ -45,16 +45,16 @@ public class BlogServiceTest {
     @Test
     void updateBlogTest() {
         // Given
-        Long blogSeq = 1L;
+        Long userSeq = 1L;
         BlogUpdateRequest updateRequest = BlogUpdateRequestFactory
                 .createBlogUpdateRequest();
 
         // When
-        blogService.updateBlog(blogSeq, updateRequest);
+        blogService.updateBlog(userSeq, updateRequest);
 
         // Then
-        verify(blogRepository).updateByBlogSeq(
-                blogSeq, updateRequest.getBlogName(),
+        verify(blogRepository).updateByUserSeq(
+                userSeq, updateRequest.getBlogName(),
                 updateRequest.getBlogDescription()
         );
     }
@@ -62,12 +62,12 @@ public class BlogServiceTest {
     @Test
     void deleteBlogTest() {
         // Given
-        Long blogSeq = 1L;
+        Long userSeq = 1L;
 
         // When
-        blogService.deleteBlog(blogSeq);
+        blogService.deleteBlog(userSeq);
 
         // Then
-        verify(blogRepository).deleteById(blogSeq);
+        verify(blogRepository).deleteByUserSeq(userSeq);
     }
 }

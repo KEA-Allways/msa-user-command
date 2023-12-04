@@ -6,7 +6,7 @@ public class BlogFactory {
     public static Blog createBlog() {
         return new Blog("newBlogName",
                 "newBlogDescription",
-                1L);
+                11L);
     }
 
     public static Blog createBlog(String blogName, String blogDescription, Long userSeq) {

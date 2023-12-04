@@ -12,6 +12,7 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -21,6 +22,7 @@ public class SignServiceTest {
     @Mock private UserRepository userRepository;
     @InjectMocks private SignService signService;
     @Captor private ArgumentCaptor<User> UserArgumentCaptor;
+    @Mock private PasswordEncoder passwordEncoder;
 
     @Test
     void signUpTest() {
@@ -28,7 +30,7 @@ public class SignServiceTest {
         SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest();
 
         // When
-        signService.SignUpForTest(signUpRequest);
+        signService.signUp(signUpRequest);
 
         // Then
         verify(userRepository).save(UserArgumentCaptor.capture());

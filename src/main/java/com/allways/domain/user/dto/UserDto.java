@@ -12,16 +12,14 @@ import java.util.Optional;
 @NoArgsConstructor
 public class UserDto {
     private Long userSeq;
-    private String userId;
+    private String  userId;
     private String email;
     private String nickname;
-    private String profileImgSeq;
 
     public static UserDto toDto(Optional<User> userOptional) {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            return new UserDto(user.getUserSeq(), user.getUserId(),
-                    user.getEmail(), user.getNickname(), user.getProfileImgSeq());
+            return new UserDto(user.getUserSeq(), user.getUserId(), user.getEmail(), user.getNickname());
         } else {
             // Handle the case when the Optional is empty, for example, return null or throw an exception.
             return null; // Or throw new SomeException("User not present");

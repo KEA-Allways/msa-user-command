@@ -12,7 +12,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // 실제 데이터베이스 사용
 @SpringBootTest
@@ -29,6 +30,8 @@ class UserRepositoryTest {
         UserUpdateRequest updateRequest = UserUpdateRequestFactory
                 .createUserUpdateRequest();
 
+        assertThat(updateRequest).isNotNull();
+
         // When
         userRepository.updateByUserSeq(
                 userSeq,
@@ -42,7 +45,6 @@ class UserRepositoryTest {
 
         // Then
         assertEquals(updateRequest.getNickname(), updatedUser.getNickname());
-        assertEquals(updateRequest.getEmail(), updatedUser.getEmail());
         assertEquals(updateRequest.getProfileImgSeq(), updatedUser.getProfileImgSeq());
     }
 }

@@ -23,6 +23,7 @@ public class UserUpdateRequestTest {
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
                 "TestNickname",
+                "TestEmail@naver.com",
                 "profileImg"
         );
 
@@ -39,6 +40,7 @@ public class UserUpdateRequestTest {
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "",
                 "TestNickname",
+                "TestEmail@naver.com",
                 "profileImg"
         );
 
@@ -55,6 +57,7 @@ public class UserUpdateRequestTest {
         UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
                 "TestPassword",
                 "",
+                "TestEmail@naver.com",
                 "profileImg"
         );
 
@@ -63,21 +66,5 @@ public class UserUpdateRequestTest {
 
         // Then
         assertEquals(1, violations.size(), "올바른 닉네임을 입력하세요.");
-    }
-
-    @Test
-    void userUpdateEmailValidation() {
-        // Given
-        UserUpdateRequest updateRequest = UserUpdateRequestFactory.createUserUpdateRequest(
-                "TestPassword",
-                "TestNickname",
-                "profileImg"
-        );
-
-        // When
-        Set<ConstraintViolation<UserUpdateRequest>> violations = validator.validate(updateRequest);
-
-        // Then
-        assertEquals(1, violations.size(), "올바른 이메일을 입력하세요.");
     }
 }

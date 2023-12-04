@@ -19,19 +19,21 @@ public class BlogCommandController {
 
     @PostMapping("/api/blog")
     @ResponseStatus(HttpStatus.CREATED)
-    public Response createBlog(@RequestHeader(value = "userSeq") Long userSeq, @RequestBody BlogCreateRequest req) {
+    public Response createBlog(@RequestHeader(value = "userSeq") Long userSeq,
+                               @RequestBody BlogCreateRequest req) {
         blogService.createBlog(req, userSeq);
         return Response.success();
     }
 
-    @PutMapping("/api/blog")
+    @PutMapping("/api/blog/{blogSeq}")
     @ResponseStatus(HttpStatus.OK)
-    public Response updateBlog(@PathVariable Long blogSeq, @RequestBody BlogUpdateRequest req) {
+    public Response updateBlog(@PathVariable Long blogSeq,
+                               @RequestBody BlogUpdateRequest req) {
         blogService.updateBlog(blogSeq, req);
         return Response.success();
     }
 
-    @DeleteMapping("/api/blog")
+    @DeleteMapping("/api/blog/{blogSeq}")
     @ResponseStatus(HttpStatus.OK)
     public Response deleteBlog(@PathVariable Long blogSeq) {
         blogService.deleteBlog(blogSeq);

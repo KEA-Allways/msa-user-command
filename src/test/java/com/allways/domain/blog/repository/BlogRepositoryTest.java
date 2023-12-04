@@ -23,7 +23,7 @@ class BlogRepositoryTest {
 
     @Test
     @Transactional
-    void updateByBlogSeqTest() {
+    void updateByUserSeqTest() {
         // Given
         String newBlogName = "updateBlogName";
         String newBlogDescription = "updateBlogDescription";
@@ -32,8 +32,8 @@ class BlogRepositoryTest {
         entityManager.persist(blog);
 
         // When
-        blogRepository.updateByBlogSeq(
-                blog.getBlogSeq(),
+        blogRepository.updateByUserSeq(
+                blog.getUserSeq(),
                 newBlogName,
                 newBlogDescription);
         entityManager.flush();

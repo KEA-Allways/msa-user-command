@@ -18,18 +18,22 @@ public class UserServiceTest {
     @InjectMocks private UserService userService;
 
     @Test
-    void updateUserTest() {
+    void updateUserWithPasswordTest() {
         // Given
         Long userSeq = 1L;
-        UserUpdateRequest request = UserUpdateRequestFactory.createUserUpdateRequest();
+        UserUpdateRequest request = UserUpdateRequestFactory
+                .createUserUpdateRequest();
 
         // When
         userService.updateUser(request, userSeq);
 
         // Then
         verify(userRepository).updateByUserSeq(
-                userSeq, request.getPassword(), request.getNickname(),
-                request.getEmail(), request.getProfileImgSeq()
+                userSeq,
+                request.getPassword(),
+                request.getNickname(),
+                request.getEmail(),
+                request.getProfileImgSeq()
         );
     }
 

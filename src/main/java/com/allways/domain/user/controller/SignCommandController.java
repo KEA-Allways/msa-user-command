@@ -1,6 +1,7 @@
 package com.allways.domain.user.controller;
 
 import com.allways.common.response.Response;
+import com.allways.domain.user.dto.AccessTokenResponse;
 import com.allways.domain.user.dto.SignInRequest;
 import com.allways.domain.user.dto.SignUpRequest;
 import com.allways.domain.user.service.SignService;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,4 +35,5 @@ public class SignCommandController {
     public Response signIn(@Valid @RequestBody SignInRequest req) {
         return success(signService.signIn(req));
     }
+
 }

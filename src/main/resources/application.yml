@@ -2,7 +2,7 @@ spring:
   application:
     name: user-command-service
   datasource:
-    url: jdbc:mysql://3.80.230.96/command?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://3.80.230.96:3306/USER_BLOG_DB?allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
