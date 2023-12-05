@@ -29,7 +29,7 @@ pipeline {
         sonarqubeInstall = "sonarqube-server"
         sonarqubeCredential = "squ_d3bd789bd0e7a614c72b97010c79eb1b2c67985c"
         sonarqubeUrl = "http://18.204.16.65:9000"
-        projectKey = "msa-user-query"
+        projectKey = "msa-user-command"
     }
 
     stages {
@@ -51,7 +51,7 @@ pipeline {
           }
         }
 
-       
+
 
 
 
