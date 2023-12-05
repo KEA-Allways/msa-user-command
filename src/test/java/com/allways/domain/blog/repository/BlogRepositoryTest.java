@@ -32,7 +32,7 @@ class BlogRepositoryTest {
         entityManager.persist(blog);
 
         // When
-        blogRepository.updateByBlogSeq(
+        blogRepository.updateByUserSeq(
                 blog.getBlogSeq(),
                 newBlogName,
                 newBlogDescription);
