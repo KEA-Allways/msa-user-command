@@ -27,7 +27,7 @@ pipeline {
 
         //소나 큐브
         sonarqubeInstall = "sonarqube-server"
-        sonarqubeCredential = "squ_d3bd789bd0e7a614c72b97010c79eb1b2c67985c"
+        sonarqubeCredential = "sqp_f9a83c96abb079a2b01a442c3cba8ebb9c9e64a6"
         sonarqubeUrl = "http://18.204.16.65:9000"
         projectKey = "msa-user-command"
     }
