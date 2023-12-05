@@ -2,7 +2,7 @@ spring:
   application:
     name: user-command-service
   datasource:
-    url: jdbc:mysql://10.20.2.115:3306/Allways_RDB?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://3.80.230.96:3306/Allways_RDB?allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
@@ -29,12 +29,12 @@ server:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-    hostname: 34.205.75.4 #
+    hostname: 44.201.129.31 #
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://3.226.241.98:8761/eureka #
+      defaultZone: http://3.213.139.105:8761/eureka #
 
 
 jwt:
