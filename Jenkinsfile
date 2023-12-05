@@ -7,7 +7,7 @@ pipeline {
         
         
         //서버 정보
-        ip = "44.201.129.31"
+        ip = "34.205.75.4"
         username = "ubuntu"
         
         //스프링 서버 정보
@@ -52,7 +52,7 @@ pipeline {
         }
 
 
-       
+
 
 
                 stage('SonarQube Analysis') {
