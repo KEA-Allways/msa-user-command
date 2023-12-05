@@ -1,0 +1,26 @@
+# 테스트 설정
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://13.124.80.188:3307/junit?allowPublicKeyRetrieval=true&useSSL=false
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 1234
+    jpa:
+      database: mysql
+      open-in-view: false
+      show-sql: true
+      hibernate:
+        properties:
+          hibernate:
+            format_sql: true
+
+jwt:
+  key:
+    #스프링부트 마스터하고싶다
+    access: 7Iqk7ZSE66eB67aA7Yq4IOuniOyKpO2EsO2VmOqzoOyLtuuLpA==
+    #스프링부트 마스터하고싶다 진짜로
+    refresh: 7Iqk7ZSE66eB67aA7Yq4IOuniOyKpO2EsO2VmOqzoOyLtuuLpCDsp4Tsp5zroZw=
+  max-age:
+    access: 604800 # 60 * 30 테스트를 위해 원래는 1800이던걸 30으로 줄여놨습니다.
+    refresh: 604800 # 60 * 60 * 24 * 7

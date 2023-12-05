@@ -24,7 +24,18 @@ public class UserCommandController {
     @PutMapping("/api/user")
     @ResponseStatus(HttpStatus.OK)
     public Response updateUser(@RequestHeader(value = "userSeq") Long userSeq, @RequestBody UserUpdateRequest req) {
-        userService.updateUser(req, userSeq);
+        System.out.println("putMapping update User");
+        System.out.println(req);
+        System.out.println("11111111111111111111111");
+        System.out.println(req.getPassword());
+        System.out.println(req.getPassword() != null);
+
+        if (req.getPassword() != null) {
+            userService.updateUserWithPassword(req, userSeq);
+        } else {
+            userService.updateUserWithoutPassword(req, userSeq);
+        }
         return Response.success();
     }
+
 }

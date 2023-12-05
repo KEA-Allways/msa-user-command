@@ -2,7 +2,7 @@ spring:
   application:
     name: user-command-service
   datasource:
-    url: jdbc:mysql://13.124.80.188:3306/test?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://3.80.230.96/USER_BLOG_DB?allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
@@ -14,31 +14,41 @@ spring:
     hibernate:
       properties:
         hibernate:
-          format_sql: true
-  profiles:
-    active: local
-    include: secret
-  #    generate-ddl: true
-#      ddl-auto: none
- #      ddl-auto: create-drop
-
-logging:
-  level:
-    org.hibernate.SQL: debug    # Logger
-    org.hibernate.type: trace   # Show Query Parameter
+          format_sql: validate
 
 
+
+  logging:
+    level:
+      org.hibernate.SQL: debug    # Logger
+      org.hibernate.type: trace   # Show Query Parameter
+
+
+  # 서버 설정
 server:
   port: 8083
-# port: 0
 
+# Eureka 클라이언트 설정
 eureka:
   instance:
-#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-    hostname: localhost
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+jwt:
+  key:
+    #스프링부트 마스터하고싶다
+    access: 7Iqk7ZSE66eB67aA7Yq4IOuniOyKpO2EsO2VmOqzoOyLtuuLpA==
+    #스프링부트 마스터하고싶다 진짜로
+    refresh: 7Iqk7ZSE66eB67aA7Yq4IOuniOyKpO2EsO2VmOqzoOyLtuuLpCDsp4Tsp5zroZw=
+  max-age:
+    access: 604800 # 60 * 30 테스트를 위해 원래는 1800이던걸 30으로 줄여놨습니다.
+    refresh: 604800 # 60 * 60 * 24 * 7
+
+
+env :
+  blog-feign-url : http://localhost:8084/api/blogs/feign
+  user-feign-url : http://localhost:8084/api/users/feign
+  file-command-feign-url : http://localhost:8087/api/feign

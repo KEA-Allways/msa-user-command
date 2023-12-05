@@ -16,6 +16,7 @@ public class TokenHelper {
     public boolean validate(String token){
         return jwtHandler.validate(key, token);
     }
+
     public String extractSubject(String token){
         return jwtHandler.extractSubjects(key, token);
     }
