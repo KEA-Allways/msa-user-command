@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name="user-query-service", url="api/users/feign")
+@FeignClient(name="user-query-service")
 public interface UserFeignClient {
 
-    @GetMapping("{userSeq}")
+    @GetMapping("api/users/feign/{userSeq}")
     UserFeignResponse queryUser(@PathVariable Long userSeq);
 
-    @GetMapping("/sign/{email}")
+    @GetMapping("api/users/feign/sign/{email}")
     UserFeignResponse queryUserByEmail(@PathVariable String email);
 }

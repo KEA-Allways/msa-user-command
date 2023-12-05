@@ -2,27 +2,24 @@ spring:
   application:
     name: user-command-service
   datasource:
-    url: jdbc:mysql://3.80.230.96/USER_BLOG_DB?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://3.80.230.96:3306/USER_BLOG_DB?allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
-  jpa:
-    database: mysql
-    open-in-view: false
-    show-sql: true
+    jpa:
+      database: mysql
+      open-in-view: false
+      show-sql: true
+      hibernate:
+        properties:
+          hibernate:
+            format_sql: true
 
-    hibernate:
-      properties:
-        hibernate:
-          format_sql: validate
-
-
-
+  # 로깅 설정
   logging:
     level:
-      org.hibernate.SQL: debug    # Logger
-      org.hibernate.type: trace   # Show Query Parameter
-
+      org.hibernate.SQL: debug
+      org.hibernate.type: trace
 
   # 서버 설정
 server:
@@ -36,7 +33,9 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka #
+
+
 jwt:
   key:
     #스프링부트 마스터하고싶다
@@ -47,8 +46,3 @@ jwt:
     access: 604800 # 60 * 30 테스트를 위해 원래는 1800이던걸 30으로 줄여놨습니다.
     refresh: 604800 # 60 * 60 * 24 * 7
 
-
-env :
-  blog-feign-url : http://localhost:8084/api/blogs/feign
-  user-feign-url : http://localhost:8084/api/users/feign
-  file-command-feign-url : http://localhost:8087/api/feign

@@ -24,11 +24,17 @@ pipeline {
         giturl = 'https://github.com/KEA-Allways/msa-user-command.git/'
         gitCredential = "github-access-token"
         branchname = "prod"
+
+        //소나 큐브
+        sonarqubeInstall = "sonarqube-server"
+        sonarqubeCredential = "squ_d3bd789bd0e7a614c72b97010c79eb1b2c67985c"
+        sonarqubeUrl = "http://18.204.16.65:9000"
+        projectKey = "msa-user-query"
     }
 
     stages {
         // git에서 repository clone
-        stage('Prepare') {
+        stage('Git Repository Clone') {
           steps {
             echo 'Clonning Repository'
               git url: giturl,
@@ -44,6 +50,29 @@ pipeline {
              }
           }
         }
+
+        stage('Junit Test') {
+                            steps{
+                                script {
+                                        sh "chmod +x gradlew; ./gradlew test"
+                                        junit '**/build/test-results/test/*.xml'
+                                }
+                            }
+
+
+                        }
+
+
+
+                stage('SonarQube Analysis') {
+                             steps {
+                                             withSonarQubeEnv(credentialsId: "sonarqube-access-token", installationName: "sonarqube-server") {
+                                                 sh """
+                                                 ./gradlew sonarqube -Dsonar.projectKey=${projectKey} -Dsonar.host.url=${sonarqubeUrl} -Dsonar.login=${sonarqubeCredential} -Dsonar.coverage.jacoco.xmlReportPaths="**/build/reports/jacoco/test/jacocoTestReport.xml" -Dsonar.exclusions="**/test/**, **/Q*.java, **/*Doc*.java, **/resources/**"
+                                                 """
+                                             }
+                                     }
+                         }
 
         // gradle build
         stage('Bulid Gradle') {
@@ -63,7 +92,7 @@ pipeline {
         }
         
         // docker build
-        stage('Bulid Docker') {
+        stage('Bulid Docker Image') {
           steps {
             echo 'Bulid Docker'
             script {
@@ -79,7 +108,7 @@ pipeline {
         }
 
         // docker push
-        stage('Push Docker') {
+        stage('Push Image To Docker Hub') {
           steps {
             echo 'Push Docker'
             script {
@@ -95,7 +124,7 @@ pipeline {
           }
         }
         
-        stage('Run Container on Dev Server') {
+        stage('Run Docker Container on Dev Server') {
           steps {
             echo 'Run Container on Dev Server'
             

@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@FeignClient(name = "file-command-service", url = "api/feign")
+@FeignClient(name = "file-command-service")
 public interface FastApiFeignClient {
 
-    @PostMapping(value = "/profileImg")
+    @PostMapping(value = "api/feign/profileImg")
     @ResponseStatus(HttpStatus.CREATED)
     void saveProfileImgToFastApi(@RequestBody FastApiUserProfileImgDataRequest request);
 
-    @PutMapping(value = "/receive_userProfileImg")
+    @PutMapping(value = "api/feign/receive_userProfileImg")
     @ResponseStatus(HttpStatus.CREATED)
     void sendDataForUpdateToFastApiUserProfileImg(@RequestBody FastApiUserProfileImgDataRequest request);
 }
