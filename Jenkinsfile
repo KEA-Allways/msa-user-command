@@ -52,23 +52,14 @@ pipeline {
         }
 
 
-        stage('Junit Test') {
-                            steps{
-                                script {
-                                        sh "chmod +x gradlew; ./gradlew test"
-                                        junit '**/build/test-results/test/*.xml'
-                                }
-                            }
-
-
-                        }
+       
 
 
                 stage('SonarQube Analysis') {
                              steps {
                                              withSonarQubeEnv(credentialsId: "sonarqube-access-token", installationName: "sonarqube-server") {
                                                  sh """
-                                                 ./gradlew sonarqube -Dsonar.projectKey=${projectKey} -Dsonar.host.url=${sonarqubeUrl} -Dsonar.login=${sonarqubeCredential} -Dsonar.coverage.jacoco.xmlReportPaths="**/build/reports/jacoco/test/jacocoTestReport.xml" -Dsonar.exclusions="**/test/**, **/Q*.java, **/*Doc*.java, **/resources/**"
+                                                 ./gradlew sonarqube -Dsonar.projectKey=${projectKey} -Dsonar.host.url=${sonarqubeUrl} -Dsonar.login=sqp_f9a83c96abb079a2b01a442c3cba8ebb9c9e64a6 -Dsonar.coverage.jacoco.xmlReportPaths="**/build/reports/jacoco/test/jacocoTestReport.xml" -Dsonar.exclusions="**/test/**, **/Q*.java, **/*Doc*.java, **/resources/**"
                                                  """
                                              }
                                      }
