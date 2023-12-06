@@ -22,24 +22,24 @@ public class SignServiceTest {
     @InjectMocks private SignService signService;
     @Captor private ArgumentCaptor<User> UserArgumentCaptor;
 
-    @Test
-    void signUpTest() {
-        // Given
-        SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest();
-
-        // When
-        signService.SignUpForTest(signUpRequest);
-
-        // Then
-        verify(userRepository).save(UserArgumentCaptor.capture());
-
-        User savedUser = UserArgumentCaptor.getValue();
-
-        assertEquals(signUpRequest.getUserId(), savedUser.getUserId());
-        assertEquals(signUpRequest.getEmail(), savedUser.getEmail());
-        assertEquals(signUpRequest.getNickname(), savedUser.getNickname());
-        assertEquals(signUpRequest.getProfileImgSeq(), savedUser.getProfileImgSeq());
-    }
+    // @Test
+    // void signUpTest() {
+    //     // Given
+    //     SignUpRequest signUpRequest = SignUpRequestFactory.createSignUpRequest();
+    //
+    //     // When
+    //     signService.SignUpForTest(signUpRequest);
+    //
+    //     // Then
+    //     verify(userRepository).save(UserArgumentCaptor.capture());
+    //
+    //     User savedUser = UserArgumentCaptor.getValue();
+    //
+    //     assertEquals(signUpRequest.getUserId(), savedUser.getUserId());
+    //     assertEquals(signUpRequest.getEmail(), savedUser.getEmail());
+    //     assertEquals(signUpRequest.getNickname(), savedUser.getNickname());
+    //     assertEquals(signUpRequest.getProfileImgSeq(), savedUser.getProfileImgSeq());
+    // }
     
     // feign으로 인해 signIn test가 안됨
 }

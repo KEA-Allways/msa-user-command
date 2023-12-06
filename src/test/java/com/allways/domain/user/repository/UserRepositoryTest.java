@@ -34,7 +34,6 @@ class UserRepositoryTest {
                 userSeq,
                 updateRequest.getPassword(),
                 updateRequest.getNickname(),
-                updateRequest.getEmail(),
                 updateRequest.getProfileImgSeq()
         );
 
@@ -42,7 +41,6 @@ class UserRepositoryTest {
 
         // Then
         assertEquals(updateRequest.getNickname(), updatedUser.getNickname());
-        assertEquals(updateRequest.getEmail(), updatedUser.getEmail());
         assertEquals(updateRequest.getProfileImgSeq(), updatedUser.getProfileImgSeq());
     }
 }

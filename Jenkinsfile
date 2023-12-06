@@ -24,11 +24,17 @@ pipeline {
         giturl = 'https://github.com/KEA-Allways/msa-user-command.git/'
         gitCredential = "github-access-token"
         branchname = "prod"
+
+        //소나 큐브
+        sonarqubeInstall = "sonarqube-server"
+        sonarqubeCredential = "sqp_f9a83c96abb079a2b01a442c3cba8ebb9c9e64a6"
+        sonarqubeUrl = "http://18.204.16.65:9000"
+        projectKey = "msa-user-command"
     }
 
     stages {
         // git에서 repository clone
-        stage('Prepare') {
+        stage('Git Repository Clone') {
           steps {
             echo 'Clonning Repository'
               git url: giturl,
@@ -44,6 +50,20 @@ pipeline {
              }
           }
         }
+
+
+
+
+
+                stage('SonarQube Analysis') {
+                             steps {
+                                             withSonarQubeEnv(credentialsId: "sonarqube-access-token", installationName: "sonarqube-server") {
+                                                 sh """
+                                                 ./gradlew sonarqube -Dsonar.projectKey=${projectKey} -Dsonar.host.url=${sonarqubeUrl} -Dsonar.login=sqp_f9a83c96abb079a2b01a442c3cba8ebb9c9e64a6 -Dsonar.coverage.jacoco.xmlReportPaths="**/build/reports/jacoco/test/jacocoTestReport.xml" -Dsonar.exclusions="**/test/**, **/Q*.java, **/*Doc*.java, **/resources/**"
+                                                 """
+                                             }
+                                     }
+                         }
 
         // gradle build
         stage('Bulid Gradle') {
@@ -63,7 +83,7 @@ pipeline {
         }
         
         // docker build
-        stage('Bulid Docker') {
+        stage('Bulid Docker Image') {
           steps {
             echo 'Bulid Docker'
             script {
@@ -79,7 +99,7 @@ pipeline {
         }
 
         // docker push
-        stage('Push Docker') {
+        stage('Push Image To Docker Hub') {
           steps {
             echo 'Push Docker'
             script {
@@ -95,7 +115,7 @@ pipeline {
           }
         }
         
-        stage('Run Container on Dev Server') {
+        stage('Run Docker Container on Dev Server') {
           steps {
             echo 'Run Container on Dev Server'
             

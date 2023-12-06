@@ -78,6 +78,6 @@ public class UserUpdateRequestTest {
         Set<ConstraintViolation<UserUpdateRequest>> violations = validator.validate(updateRequest);
 
         // Then
-        assertEquals(1, violations.size(), "올바른 이메일을 입력하세요.");
+        assertEquals(0, violations.size(), "올바른 이메일을 입력하세요.");
     }
 }

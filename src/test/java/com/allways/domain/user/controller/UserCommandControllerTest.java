@@ -46,11 +46,11 @@ class UserCommandControllerTest {
         // UserUpdateRequest 객체를 생성하고, 해당 객체를 JSON 형태로 변환합니다.
         UserUpdateRequest userUpdateRequest = new UserUpdateRequest(
                 user.getPassword(), user.getNickname(),
-                user.getEmail(), user.getProfileImgSeq());
+                user.getProfileImgSeq());
 
         // When
         // userService.updateUser()가 호출되면 아무 작업도 수행하지 않도록 설정합니다.
-        doNothing().when(userService).updateUser(any(UserUpdateRequest.class), anyLong());
+        doNothing().when(userService).updateUserWithPassword(any(UserUpdateRequest.class), anyLong());
 
         // Then
         // 해당 HTTP PUT 요청이 성공적으로 수행되는지 확인합니다.

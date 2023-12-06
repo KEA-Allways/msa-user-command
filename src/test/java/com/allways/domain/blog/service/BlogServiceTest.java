@@ -53,7 +53,7 @@ public class BlogServiceTest {
         blogService.updateBlog(blogSeq, updateRequest);
 
         // Then
-        verify(blogRepository).updateByBlogSeq(
+        verify(blogRepository).updateByUserSeq(
                 blogSeq, updateRequest.getBlogName(),
                 updateRequest.getBlogDescription()
         );
