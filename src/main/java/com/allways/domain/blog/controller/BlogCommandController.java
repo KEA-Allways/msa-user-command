@@ -26,8 +26,8 @@ public class BlogCommandController {
 
     @PutMapping("/api/blog")
     @ResponseStatus(HttpStatus.OK)
-    public Response updateBlog(@PathVariable Long blogSeq, @RequestBody BlogUpdateRequest req) {
-        blogService.updateBlog(blogSeq, req);
+    public Response updateBlog(@RequestHeader(value = "userSeq") Long userSeq, @RequestBody BlogUpdateRequest req) {
+        blogService.updateBlog(userSeq, req);
         return Response.success();
     }
 

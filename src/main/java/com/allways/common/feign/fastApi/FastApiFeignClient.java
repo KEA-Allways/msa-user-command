@@ -14,7 +14,7 @@ public interface FastApiFeignClient {
     @ResponseStatus(HttpStatus.CREATED)
     void saveProfileImgToFastApi(@RequestBody FastApiUserProfileImgDataRequest request);
 
-    @PutMapping(value = "api/feign/receive_userProfileImg")
+    @PutMapping(value = "api/feign/profileImg")
     @ResponseStatus(HttpStatus.CREATED)
     void sendDataForUpdateToFastApiUserProfileImg(@RequestBody FastApiUserProfileImgDataRequest request);
 }
